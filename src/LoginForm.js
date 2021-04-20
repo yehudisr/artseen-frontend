@@ -1,32 +1,36 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-function LoginForm({ setLoggedIn, setCurrentUser }){
+function LoginForm({ setLoggedIn, handleUser }){
         const [email, setEmail] = useState("");
-        const [password, setPassword] = useState("")
+        // const [password, setPassword] = useState("")
          
 
-        const formData = { 
-          email,
-          password,
-        }
-        console.log(formData)
+  
         
         function handleSubmit(event) {
            event.preventDefault();
              
-           fetch(`http://localhost:3000/users`, { 
+           fetch(`http://localhost:3000/login`, { 
             method: 'POST',
             headers: {
-              'Content-type': 'application/json'
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
       
             },
-            Body: JSON.stringify(formData)
+            body: JSON.stringify({email: email})
             
             })
 
             .then(response => response.json())
-            .then(response => console.log(response)) 
+            .then(response => {
+              handleUser(response)
+              setLoggedIn(true)
+              // setCurrentUser(response)
+              // setLoggedIn(true)
+              // console.log(currentUser)
+              
+            }) 
 
          }
 
@@ -41,13 +45,13 @@ function LoginForm({ setLoggedIn, setCurrentUser }){
                value={email}
                onChange={(e) => setEmail(e.target.value)}
              />
-             <label htmlFor="password">Password</label>
+             {/* <label htmlFor="password">Password</label>
              <input
                type="password"
                id="password"
                value={password}
                onChange={(e) => setPassword(e.target.value)}
-             />
+             /> */}
              <input type="submit" value="login" />
            </form>
          );

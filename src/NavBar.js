@@ -16,13 +16,9 @@ const linkStyles = {
 
 function NavBar({ loggedIn }){
 
-    const [showLogin, setShowLogin] = useState(false)
     const [showSignup, setShowSignup] = useState(false)
   
   
-    function handleLoginToggle(){
-      setShowLogin(showLogin => !showLogin)
-    }
   
     function handleSignupToggle(){
       setShowSignup(showSignup => !showSignup)
@@ -31,15 +27,11 @@ function NavBar({ loggedIn }){
     return(
        <div>
 
-            { !loggedIn && (
-            <>
-           <button onClick={handleLoginToggle}>Login</button>
-           <button onClick={handleSignupToggle}>Signup</button>
+            { !loggedIn && <button onClick={handleSignupToggle}>Signup</button>
            
-            </>)}
+            }
 
             {showSignup && <SignupForm />}
-            {showLogin && <LoginForm />}
 
            { loggedIn &&  
            <>
