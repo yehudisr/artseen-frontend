@@ -3,20 +3,31 @@ import ReactDOM from 'react-dom';
 
 function SignupForm(){
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
-    
+
     function handleSubmit(event) {
-        event.preventDefault();
-          const formData = { 
-          username,
-          password,
-          firstname,
-          lastname
-        }
-        console.log(formData);
+      event.preventDefault();
+        const formData = { 
+        email,
+        password,
+        firstname,
+        lastname
+      }
+      console.log(formData);
+
+    fetch(`http://localhost:3000/users`, { 
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+       Body: JSON.stringify(formData)
+      .then(response => response.json)
+      .then(response => console.log(response))
+    }) 
+
       }
       return (
         <form onSubmit={handleSubmit}>
@@ -25,8 +36,8 @@ function SignupForm(){
           <input
             type="text"
             id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <label htmlFor="password">Password</label>
           <input

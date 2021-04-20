@@ -18,6 +18,10 @@ function EventCard({ event }){
         setDisplayComments(displayComments => !displayComments)
     }
 
+    function handleSave(){
+        fetch("http://localhost:3000/event_listings")
+    }
+
     return(
         <Div className="card">
             <h3>{title}</h3>
@@ -29,6 +33,9 @@ function EventCard({ event }){
             >Event Page</NavLink>
 
             <button onClick={toggleComments}>show comments</button>
+
+            <button onClick={handleSave}>Save</button>
+
 
            { displayComments && <Comments comments={comments} eventId={id}/>}
         </Div>

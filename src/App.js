@@ -12,14 +12,17 @@ import EventPage from "./EventPage";
 
 function App() {
   const [page, setPage] = useState("/events")
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
+
+
   return (
     <div className="App">
       <Header />
        <Navbar onChangePage={setPage} loggedIn={loggedIn}/>
       <Switch>
         <Route exact path="/login">
-          <LoginForm setLoggedIn={setLoggedIn}/>
+          <LoginForm setLoggedIn={setLoggedIn} setCurrentUser={setCurrentUser}/>
         </Route>
         <Route exact path="/profile">
           <Profile />
