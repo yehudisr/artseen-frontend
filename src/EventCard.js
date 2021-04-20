@@ -1,6 +1,6 @@
-
-import { NavLink} from 'react-router-dom'
-import Comments from './Comments'
+import { useState } from 'react';
+import { NavLink} from 'react-router-dom';
+import Comments from './Comments';
 import styled, { ThemeProvider } from "styled-components";
 
 const Div = styled.div`
@@ -12,8 +12,11 @@ function EventCard({ event }){
 
 
     const {title, id, comments, image} = event
-    // const displayComments = comments.map(comment => <p>{comment.content}</p>
-    // )
+    const [displayComments, setDisplayComments] = useState(false)
+
+    function toggleComments(){
+        setDisplayComments(displayComments => !displayComments)
+    }
 
     function handleSave(){
         fetch("http://localhost:3000/event_listings")
@@ -29,10 +32,12 @@ function EventCard({ event }){
             exact 
             >Event Page</NavLink>
 
+            <button onClick={toggleComments}>show comments</button>
+
             <button onClick={handleSave}>Save</button>
 
 
-            <Comments comments={comments} />
+           { displayComments && <Comments comments={comments} eventId={id}/>}
         </Div>
     )
 }
