@@ -1,10 +1,14 @@
 import EventCard from './EventCard'
 
 
-function EventList(){
+function EventList({ events }){
+   console.log(events)
+
+    const displayEvents = events.map(event => <EventCard key={event.id} event={event} /> )
     return(
-       
-        <h4>EVENT LIST</h4>
+       <div>
+    <ul>{displayEvents}</ul>
+       </div>   
 
     )
 }

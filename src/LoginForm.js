@@ -1,7 +1,37 @@
-function LoginForm(){
-    return(
-        <h2>LOGIN FORM</h2>
-    )
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+
+function LoginForm({ setLoggedIn }){
+        const [username, setUsername] = useState("");
+        const [password, setPassword] = useState("");
+         function handleSubmit(event) {
+           event.preventDefault();
+             const formData = { 
+             username,
+             password,
+           }
+           console.log(formData);
+         }
+         return (
+           <form onSubmit={handleSubmit}>
+             <h1>Login</h1>
+             <label htmlFor="username">Username</label>
+             <input
+               type="text"
+               id="username"
+               value={username}
+               onChange={(e) => setUsername(e.target.value)}
+             />
+             <label htmlFor="password">Password</label>
+             <input
+               type="password"
+               id="password"
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+             />
+             <input type="submit" value="login" />
+           </form>
+         );
 }
 
 export default LoginForm;
