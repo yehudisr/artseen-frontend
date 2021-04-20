@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 function MainContainer(){
 
 const [events, setEvents] = useState([])
+const [search, setSearch] = useState('')
 
 useEffect(() =>{
     fetch('http://localhost:3000/events')
@@ -17,11 +18,17 @@ useEffect(() =>{
         .then(setEvents)
 }, [])
 
+const handleSearch = (e) => setSearch(e)
+
+const filterEvents = events.filter(event =>
+    event.description.toLowerCase().includes(search.toLowerCase())
+  )
+
     return(
         <div className="main-container">
         <h1>MAIN CONTAINER</h1>
-            <Search />
-            <EventList events={events}/>
+            <Search search={search} handleSearch={handleSearch} />
+            <EventList events={filterEvents}/>
         </div>
     )
 }
