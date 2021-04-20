@@ -7,7 +7,7 @@ import LoginForm from "./LoginForm";
 import Navbar from "./NavBar";
 import React, { useState } from "react"
 import Profile from "./Profile";
-import EventDetail from "./EventDetail";
+import EventPage from "./EventPage";
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
           <MainContainer />
         </Route> 
         <Route exact path="/events/:id">
-          <EventDetail/>
+          <EventPage />
         </Route>
       </Switch>
       
