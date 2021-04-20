@@ -44,7 +44,7 @@ function NavBar({ loggedIn }){
            { loggedIn &&  
            <>
             <NavLink 
-            to='/home'
+            to='/events'
             exact
             style={linkStyles} 
             >Search Events</NavLink>

@@ -11,7 +11,7 @@ import EventPage from "./EventPage";
 
 
 function App() {
-  const [page, setPage] = useState("/home")
+  const [page, setPage] = useState("/events")
   const [loggedIn, setLoggedIn] = useState(true)
   return (
     <div className="App">
@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/profile">
           <Profile />
         </Route>
-        <Route exact path="/home">
+        <Route exact path="/events">
           <MainContainer />
         </Route> 
         <Route exact path="/events/:id">

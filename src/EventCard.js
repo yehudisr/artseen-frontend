@@ -1,5 +1,6 @@
 
 import { NavLink} from 'react-router-dom'
+import Comments from './Comments'
 import styled, { ThemeProvider } from "styled-components";
 
 const Div = styled.div`
@@ -11,8 +12,8 @@ function EventCard({ event }){
 
 
     const {title, id, comments, image} = event
-    const displayComments = comments.map(comment => <p>{comment.content}</p>
-    )
+    // const displayComments = comments.map(comment => <p>{comment.content}</p>
+    // )
 
     return(
         <Div className="card">
@@ -25,7 +26,7 @@ function EventCard({ event }){
             >Event Page</NavLink>
 
 
-            <ul>{displayComments}</ul>
+            <Comments comments={comments} />
         </Div>
     )
 }
