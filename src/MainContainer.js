@@ -7,7 +7,7 @@ import {Route, Switch} from 'react-router-dom'
 import { useState, useEffect } from 'react';
 
 
-function MainContainer(){
+function MainContainer({currentUser}){
 
 const [events, setEvents] = useState([])
 const [search, setSearch] = useState('')
@@ -28,7 +28,7 @@ const filterEvents = events.filter(event =>
         <div className="main-container">
         <h1>MAIN CONTAINER</h1>
             <Search search={search} handleSearch={handleSearch} />
-            <EventList events={filterEvents}/>
+            <EventList events={filterEvents} currentUser={currentUser}/>
         </div>
     )
 }

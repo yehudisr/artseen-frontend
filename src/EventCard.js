@@ -8,7 +8,7 @@ const Div = styled.div`
     `
 
 
-function EventCard({ event }){
+function EventCard({ event, currentUser }){
 
 
     const {title, id, comments, image} = event
@@ -37,7 +37,7 @@ function EventCard({ event }){
             <button onClick={handleSave}>Save</button>
 
 
-           { displayComments && <Comments comments={comments} eventId={id}/>}
+           { displayComments && <Comments comments={comments} eventId={id} currentUser={currentUser}/>}
         </Div>
     )
 }
