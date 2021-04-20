@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-function LoginForm({ setLoggedIn }){
-        const [username, setUsername] = useState("");
-        const [password, setPassword] = useState("");
+function LoginForm({ setLoggedIn, setCurrentUser }){
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("")
          
 
-       
+        const formData = { 
+          email,
+          password,
+        }
+        console.log(formData)
         
         function handleSubmit(event) {
            event.preventDefault();
-             const formData = { 
-             username,
-             password,
-           }
+             
+           fetch(`http://localhost:3000/users`, { 
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json'
+      
+            },
+            Body: JSON.stringify(formData)
+            
+            })
 
-           console.log(formData);
+            .then(response => response.json())
+            .then(response => console.log(response)) 
 
          }
-
-         fetch(/* blabla, */ { 
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json'
-            'Accept': 'application/json'
-    
-          },
-          Body: JSON.stringify(formData)
-          .then(response => response.json)
-          .then(response => console.log(response))
-        }) 
 
 
          return (
@@ -39,8 +38,8 @@ function LoginForm({ setLoggedIn }){
              <input
                type="text"
                id="username"
-               value={username}
-               onChange={(e) => setUsername(e.target.value)}
+               value={email}
+               onChange={(e) => setEmail(e.target.value)}
              />
              <label htmlFor="password">Password</label>
              <input

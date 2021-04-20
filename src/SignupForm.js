@@ -22,10 +22,8 @@ function SignupForm(){
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
-        'Accept': 'application/json'
-
       },
-      Body: JSON.stringify(formData)
+       Body: JSON.stringify(formData)
       .then(response => response.json)
       .then(response => console.log(response))
     }) 
