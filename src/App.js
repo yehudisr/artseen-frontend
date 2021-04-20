@@ -31,7 +31,7 @@ function App() {
           <Profile currentUser={currentUser}/>
         </Route>
         <Route exact path="/events">
-          <MainContainer />
+          <MainContainer currentUser={currentUser} />
         </Route> 
         <Route exact path="/events/:id">
           <EventPage />

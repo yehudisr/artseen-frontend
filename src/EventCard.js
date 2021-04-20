@@ -8,8 +8,8 @@ const Div = styled.div`
     `
 
 
-function EventCard({ event }){
-
+function EventCard({ event, currentUser }){
+  console.log(currentUser)
 
     const {title, id, comments, image} = event
     const [displayComments, setDisplayComments] = useState(false)
@@ -19,7 +19,22 @@ function EventCard({ event }){
     }
 
     function handleSave(){
-        fetch("http://localhost:3000/event_listings")
+      
+       
+        fetch(`http://localhost:3000/users/${1}/events`, { 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+      
+            },
+            body: JSON.stringify({event_id: id, user_id: 1, saved: true})
+            })
+            .then (res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+
     }
 
     return(
