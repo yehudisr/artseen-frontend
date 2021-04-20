@@ -15,6 +15,10 @@ function EventCard({ event }){
     // const displayComments = comments.map(comment => <p>{comment.content}</p>
     // )
 
+    function handleSave(){
+        fetch("http://localhost:3000/event_listings")
+    }
+
     return(
         <Div className="card">
             <h3>{title}</h3>
@@ -24,6 +28,8 @@ function EventCard({ event }){
             to={`/events/${id}`}
             exact 
             >Event Page</NavLink>
+
+            <button onClick={handleSave}>Save</button>
 
 
             <Comments comments={comments} />
