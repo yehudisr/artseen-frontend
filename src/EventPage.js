@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 
-function EventDetail(){
+function EventPage(){
     const [event, setEvent] = useState({})
     const { id } = useParams();
     console.log(id)
@@ -24,4 +24,4 @@ function EventDetail(){
     )
 }
 
-export default EventDetail;
+export default EventPage;
