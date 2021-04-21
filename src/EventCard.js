@@ -8,27 +8,28 @@ const Div = styled.div`
     `
 
 
-function EventCard({ event, currentUser }){
+function EventCard({ event }){
 
-
-    const {title, id, comments, image} = event
+    const getUser = localStorage.getItem('user')
+    const currentUser = JSON.parse(getUser)
+    const {id, title, comments, image} = event
     const [displayComments, setDisplayComments] = useState(false)
 
     function toggleComments(){
         setDisplayComments(displayComments => !displayComments)
     }
 
-    function handleSave(){
+    function handleSave(id){
       
        
-        fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
+        fetch(`http://localhost:3000/event_listings`, { 
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
       
             },
-            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: false, seen: false})
+            body: JSON.stringify({  user_id: currentUser.id, event_id: id, saved: true, booked: false, seen: false})
             })
             .then (res => res.json())
             .then(data => {
@@ -49,7 +50,7 @@ function EventCard({ event, currentUser }){
 
             <button onClick={toggleComments}>show comments</button>
 
-            <button onClick={handleSave}>Save</button>
+            <button onClick={() => handleSave(event)}>Save</button>
 
 
            { displayComments && <Comments comments={comments} eventId={id} currentUser={currentUser}/>}

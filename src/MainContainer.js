@@ -7,7 +7,7 @@ import {Route, Switch} from 'react-router-dom'
 import { useState, useEffect } from 'react';
 
 
-function MainContainer({currentUser}){
+function MainContainer(){
 const [events, setEvents] = useState([])
 const [search, setSearch] = useState('')
 
@@ -20,7 +20,7 @@ useEffect(() =>{
 const handleSearch = (e) => setSearch(e)
 
 const filterEvents = events.filter(event =>
-    event.description.toLowerCase().includes(search.toLowerCase())
+    event.title.toLowerCase().includes(search.toLowerCase())
   )
 
   console.log(events)
@@ -29,7 +29,8 @@ const filterEvents = events.filter(event =>
         <div className="main-container">
         <h1>Events</h1>
             <Search search={search} handleSearch={handleSearch} />
-            <EventList currentUser={currentUser} events={filterEvents}/>
+            <EventList  events={filterEvents}/>
+            {/* <EventList events={events} /> */}
         </div>
     )
 }

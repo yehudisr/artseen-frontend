@@ -8,64 +8,91 @@ const Div = styled.div`
     `
 
 
-function ProfileEventCard({ event, currentUser }){
+function ProfileEventCard({ event, eventListing }){
+    const getUser = localStorage.getItem('user')
+    const currentUser = JSON.parse(getUser)
 
-    console.log(event)
-    const {title, id, comments, image} = event
+    // const [curEvent, setCurEvent] = useState(event)
     const [displayComments, setDisplayComments] = useState(false)
+    const [booked, setBooked] = useState(false)
+    const [seen, setSeen] = useState(false)
+   
 
 
-    function handleBooked(){
+    // function handleBooked(){
       
        
-        fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
+    //     fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
+    //         method: 'PATCH',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //           'Accept': 'application/json'
       
-            },
-            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
-            })
-            .then (res => res.json())
-            .then(data => {
-                console.log(data)
-            })
+    //         },
+    //         body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
+    //         })
+    //         .then (res => res.json())
+    //         .then(data => {
+    //             console.log(data)
+    //         })
 
+    // }
+
+    // function handleUpdate(){
+      
+       
+    //     fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
+    //         method: 'PATCH',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //           'Accept': 'application/json'
+      
+    //         },
+    //         body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
+    //         })
+    //         .then (res => res.json())
+    //         .then(data => {
+    //             console.log(data)
+    //         })
+
+    // }
+
+    function handleUpdate(e){
+        setBooked(booked => !booked)
+        setSeen(seen => !seen)
+        console.log(e.target.name)
+        console.log(e.target.value)
+ 
+        fetch(`http://localhost:3000/event_listings/${eventListing.id}`, {
+             method: 'PATCH',
+             headers: {
+                 'Content-Type': 'application/json',
+                 'Accept': 'application/json'
+             },
+             body: JSON.stringify({[e.target.name]: e.target.value})
+         })
+            .then(res => res.json())
+            .then(console.log)
     }
 
-    function handleSeen(){
-      
-       
-        fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-      
-            },
-            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
-            })
-            .then (res => res.json())
-            .then(data => {
-                console.log(data)
-            })
+    function handleDelete(){
 
     }
 
     return(
         <Div className="card">
-            <h3>{title}</h3>
-            <img src={image} alt={title} style={{width: "300px"}}/>
+            <h3>{event.title}</h3>
+            <img src={event.image} alt={event.title} style={{width: "300px"}}/>
               
          <NavLink 
-            to={`/events/${id}`}
+            to={`/events/${event.id}`}
             exact 
             >Event Page</NavLink>
 
-            <button onClick={handleBooked}>Booked</button>
+            { eventListing.booked ? <button name="booked" value={false} onClick={handleUpdate}>already booked</button> : <button name="booked" value={true} onClick={handleUpdate}>book it</button> }
 
-            <button onClick={handleSeen}>Seen</button>
+           {eventListing.seen ? <p>seen</p> : <button name="seen" value={true} onClick={handleUpdate}>Seen</button>}
+            {/* <button name="seen" value={true} onClick={handleDelete}>Delete</button> */}
         </Div>
     )
 }

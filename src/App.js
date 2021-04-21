@@ -11,7 +11,7 @@ import EventPage from "./EventPage";
 
 
 function App() {
-  const [page, setPage] = useState("/events")
+  const [page, setPage] = useState("/")
 
 
   function handleUser(user) {
@@ -28,7 +28,7 @@ function App() {
       <Navbar onChangePage={setPage} currentUser={currentUser} />
       <Switch>
         <Route exact path="/profile/:id">
-          <Profile currentUser={currentUser} />
+          <Profile  />
         </Route>
         <Route exact path="/">
           <MainContainer currentUser={currentUser} />

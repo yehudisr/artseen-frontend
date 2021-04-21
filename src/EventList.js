@@ -1,9 +1,9 @@
 import EventCard from './EventCard'
 
 
-function EventList({ events, currentUser }){
+function EventList({ events }){
 
-    const displayEvents = events.map(event => <EventCard key={event.id} event={event} currentUser={currentUser} /> )
+    const displayEvents = events.map(event => <EventCard key={event.id} event={event} /> )
     return(
        <div>
     <ul>{displayEvents}</ul>
