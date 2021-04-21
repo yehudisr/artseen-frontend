@@ -8,12 +8,15 @@ const Div = styled.div`
     `
 
 
-function ProfileEventCard({ event }){
+function ProfileEventCard({ event, eventListing }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
 
     // const [curEvent, setCurEvent] = useState(event)
     const [displayComments, setDisplayComments] = useState(false)
+    const [booked, setBooked] = useState(false)
+    const [seen, setSeen] = useState(false)
+   
 
 
     // function handleBooked(){
@@ -35,7 +38,7 @@ function ProfileEventCard({ event }){
 
     // }
 
-    // function handleSeen(){
+    // function handleUpdate(){
       
        
     //     fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
@@ -55,16 +58,25 @@ function ProfileEventCard({ event }){
     // }
 
     function handleUpdate(e){
-        const newObj = {
-            [e.target.name]: e.target.value,
-            user_id: currentUser.id,
-            event_id: event.id
-        }
-        console.log(newObj)
+        setBooked(booked => !booked)
+        setSeen(seen => !seen)
+        console.log(e.target.name)
+        console.log(e.target.value)
+ 
+        fetch(`http://localhost:3000/event_listings/${eventListing.id}`, {
+             method: 'PATCH',
+             headers: {
+                 'Content-Type': 'application/json',
+                 'Accept': 'application/json'
+             },
+             body: JSON.stringify({[e.target.name]: e.target.value})
+         })
+            .then(res => res.json())
+            .then(console.log)
     }
 
     function handleDelete(){
-        
+
     }
 
     return(
@@ -77,10 +89,10 @@ function ProfileEventCard({ event }){
             exact 
             >Event Page</NavLink>
 
-            <button name="booked" value={true} onClick={handleUpdate}>Booked</button>
+            { eventListing.booked ? <button name="booked" value={false} onClick={handleUpdate}>already booked</button> : <button name="booked" value={true} onClick={handleUpdate}>book it</button> }
 
-            <button name="seen" value={true} onClick={handleUpdate}>Seen</button>
-            <button name="seen" value={true} onClick={handleDelete}>Delete</button>
+           {eventListing.seen ? <p>seen</p> : <button name="seen" value={true} onClick={handleUpdate}>Seen</button>}
+            {/* <button name="seen" value={true} onClick={handleDelete}>Delete</button> */}
         </Div>
     )
 }

@@ -18,7 +18,7 @@ function Profile() {
 
     console.log(events)
 
-    const displayEvents = events.map(event => <ProfileEventCard event={event.event} />)
+    const displayEvents = events.map(eventlisting => <ProfileEventCard event={eventlisting.event} eventListing={eventlisting} />)
     console.log(events)
 
     return (

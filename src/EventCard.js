@@ -20,7 +20,6 @@ function EventCard({ event }){
     }
 
     function handleSave(id){
-        console.log(id)
       
        
         fetch(`http://localhost:3000/event_listings`, { 
