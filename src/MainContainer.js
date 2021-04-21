@@ -8,7 +8,6 @@ import { useState, useEffect } from 'react';
 
 
 function MainContainer({currentUser}){
-
 const [events, setEvents] = useState([])
 const [search, setSearch] = useState('')
 
@@ -24,9 +23,11 @@ const filterEvents = events.filter(event =>
     event.description.toLowerCase().includes(search.toLowerCase())
   )
 
+  console.log(events)
+
     return(
         <div className="main-container">
-        <h1>MAIN CONTAINER</h1>
+        <h1>Events</h1>
             <Search search={search} handleSearch={handleSearch} />
             <EventList currentUser={currentUser} events={filterEvents}/>
         </div>

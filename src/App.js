@@ -10,37 +10,40 @@ import Profile from "./Profile";
 import EventPage from "./EventPage";
 
 
-
 function App() {
-  const [page, setPage] = useState("/")
-  const [currentUser, setCurrentUser] = useState(null)
+  const [page, setPage] = useState("/events")
 
-  function handleUser(user){
-    setCurrentUser(user)
-   
+
+  function handleUser(user) {
+    localStorage.setItem('user', JSON.stringify(user))
   }
+  const getUser = localStorage.getItem('user')
+
+  const currentUser = JSON.parse(getUser)
 
 
   return (
     <div className="App">
-     <Header />
-       <Navbar onChangePage={setPage} /> 
+      <Header />
+      <Navbar onChangePage={setPage} currentUser={currentUser} />
       <Switch>
         <Route exact path="/profile/:id">
-          <Profile currentUser={currentUser}/>
+          <Profile currentUser={currentUser} />
+        </Route>
+        <Route exact path="/">
+          <MainContainer currentUser={currentUser} />
         </Route>
         <Route exact path="/events/:id">
           <EventPage />
         </Route>
         <Route exact path="/login">
-        <LoginForm handleUser={handleUser}/>
+          <LoginForm handleUser={ handleUser } />
         </Route>
-        <Route exact path="/">
-          <MainContainer currentUser={currentUser} />
-        </Route> 
       </Switch>
-    </div>
-     );
+
+
+    </div >
+  );
 }
 
 export default App;

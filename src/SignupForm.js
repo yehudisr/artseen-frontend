@@ -1,66 +1,82 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom'
 
-function SignupForm(){
+function SignupForm({ handleUser }){
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
+const history = useHistory()
+
+    const initialState = {
+      email: "",
+      password: "",
+      firstname: "",
+      lastname: ""
+    }
+
+    const [formData, setFormData] = useState(initialState)
 
     function handleSubmit(event) {
       event.preventDefault();
-        const formData = { 
-        email,
-        password,
-        firstname,
-        lastname
-      }
+      
       console.log(formData);
 
     fetch(`http://localhost:3000/users`, { 
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       },
-       Body: JSON.stringify(formData)
-      .then(response => response.json)
-      .then(response => console.log(response))
-    }) 
+       body: JSON.stringify(formData)
+      }) 
+        .then(res => res.json)
+        .then(res => {
+              
+              handleUser(res)
+              history.push('/')
+        })
+   
 
+        setFormData(initialState)
       }
+
+      function handleChange(e){
+        setFormData({
+          ...formData,
+            [e.target.name]: e.target.value
+        })
+      }
+
       return (
         <form onSubmit={handleSubmit}>
           <h1>Create your Account</h1>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
-            id="username"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
           />
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
           />
           <label htmlFor="firstname">Firstname</label>
           <input
             type="text"
-            id="firstname"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
+            name="firstname"
+            value={formData.firstname}
+            onChange={handleChange}
           />
           <label htmlFor="lastname">Lastname</label>
           <input
             type="text"
-            id="lastname"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
+            name="lastname"
+            value={formData.lastname}
+            onChange={handleChange}
           />
-          <input type="submit" value="Sign Up" />
+          <input type="submit" value="signup" />
         </form>
       );
 }

@@ -8,27 +8,43 @@ const Div = styled.div`
     `
 
 
-function EventCard({ event, currentUser }){
+function ProfileEventCard({ event, currentUser }){
 
-
+    console.log(event)
     const {title, id, comments, image} = event
     const [displayComments, setDisplayComments] = useState(false)
 
-    function toggleComments(){
-        setDisplayComments(displayComments => !displayComments)
-    }
 
-    function handleSave(){
+    function handleBooked(){
       
        
         fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
-            method: 'POST',
+            method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
       
             },
-            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: false, seen: false})
+            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
+            })
+            .then (res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+
+    }
+
+    function handleSeen(){
+      
+       
+        fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+      
+            },
+            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
             })
             .then (res => res.json())
             .then(data => {
@@ -47,14 +63,11 @@ function EventCard({ event, currentUser }){
             exact 
             >Event Page</NavLink>
 
-            <button onClick={toggleComments}>show comments</button>
+            <button onClick={handleBooked}>Booked</button>
 
-            <button onClick={handleSave}>Save</button>
-
-
-           { displayComments && <Comments comments={comments} eventId={id} currentUser={currentUser}/>}
+            <button onClick={handleSeen}>Seen</button>
         </Div>
     )
 }
 
-export default EventCard;
+export default ProfileEventCard;
