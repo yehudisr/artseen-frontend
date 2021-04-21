@@ -21,14 +21,14 @@ function EventCard({ event, currentUser }){
     function handleSave(){
       
        
-        fetch(`http://localhost:3000/users/${1}/events`, { 
+        fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
       
             },
-            body: JSON.stringify({event_id: id, user_id: 1, saved: true})
+            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true})
             })
             .then (res => res.json())
             .then(data => {

@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import SignupForm from './SignupForm'
+import { useHistory } from "react-router-dom"
 
 function LoginForm({ setLoggedIn, handleUser }){
         const [email, setEmail] = useState("");
         // const [password, setPassword] = useState("")
          
 
-  
+        const [showSignup, setShowSignup] = useState(false)
+
+        const history = useHistory()
+
+        function handleSignupToggle(){
+          setShowSignup(showSignup => !showSignup)
+        }
         
         function handleSubmit(event) {
            event.preventDefault();
@@ -25,35 +33,40 @@ function LoginForm({ setLoggedIn, handleUser }){
             .then(response => response.json())
             .then(response => {
               handleUser(response)
-              setLoggedIn(true)
-              // setCurrentUser(response)
-              // setLoggedIn(true)
-              // console.log(currentUser)
-              
+              history.push('/')
             }) 
 
          }
 
 
          return (
-           <form onSubmit={handleSubmit}>
-             <h1>Login</h1>
-             <label htmlFor="username">Username</label>
-             <input
-               type="text"
-               id="username"
-               value={email}
-               onChange={(e) => setEmail(e.target.value)}
-             />
-             {/* <label htmlFor="password">Password</label>
-             <input
-               type="password"
-               id="password"
-               value={password}
-               onChange={(e) => setPassword(e.target.value)}
-             /> */}
-             <input type="submit" value="login" />
-           </form>
+
+          <div>
+              <form onSubmit={handleSubmit}>
+                <h1>Login</h1>
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {/* <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                /> */}
+                <input type="submit" value="login" />
+              </form>
+
+                <button onClick={handleSignupToggle}>Signup</button>
+                  
+                          
+                { showSignup && <SignupForm />}
+
+              </div>
          );
 }
 

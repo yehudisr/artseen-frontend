@@ -16,39 +16,24 @@ const linkStyles = {
 
 function NavBar({ loggedIn }){
 
-    const [showSignup, setShowSignup] = useState(false)
-  
-  
-  
-    function handleSignupToggle(){
-      setShowSignup(showSignup => !showSignup)
-    }
+    
 
     return(
        <div>
 
-            { !loggedIn && <button onClick={handleSignupToggle}>Signup</button>
            
-            }
+              <NavLink 
+              to='/events'
+              exact
+              style={linkStyles} 
+              >Search Events</NavLink>
 
-            {showSignup && <SignupForm />}
-
-           { loggedIn &&  
-           <>
             <NavLink 
-            to='/events'
+            to='/profile/:id'
             exact
             style={linkStyles} 
-            >Search Events</NavLink>
-
-           <NavLink 
-           to='/profile'
-           exact
-           style={linkStyles} 
-            >My Events</NavLink>
-
-            </>
-            }
+              >My Events</NavLink>
+           
 
        </div>
     )
