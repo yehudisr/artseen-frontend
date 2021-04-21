@@ -1,11 +1,10 @@
-
+import { useEffect, useState } from 'react'
 
 function Comment({ comment }){
-
+ 
     return(
-        
         <div>
-            <h6> Insert Name of User </h6>
+            <h6>{comment.user.firstname} {comment.user.lastname}</h6> 
             <p>{comment.content}</p>
             <hr/>
         </div> 

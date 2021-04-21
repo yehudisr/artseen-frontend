@@ -6,7 +6,7 @@ const Div = styled.div`
     border: 1px solid;
     `
 
-function Comments({comments, eventId}){
+function Comments({comments, eventId, currentUser}){
 
     const [commentsArray, setCommentsArray] = useState(comments)
     const initialState = ""
@@ -27,7 +27,7 @@ function Comments({comments, eventId}){
             },
             body: JSON.stringify({
                 event_id: eventId,
-                user_id: 1,
+                user_id: currentUser.id,
                 content: formData
             })
         })

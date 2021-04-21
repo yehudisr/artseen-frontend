@@ -9,7 +9,7 @@ const Div = styled.div`
 
 
 function EventCard({ event, currentUser }){
-  console.log(currentUser)
+
 
     const {title, id, comments, image} = event
     const [displayComments, setDisplayComments] = useState(false)
@@ -52,7 +52,7 @@ function EventCard({ event, currentUser }){
             <button onClick={handleSave}>Save</button>
 
 
-           { displayComments && <Comments comments={comments} eventId={id}/>}
+           { displayComments && <Comments comments={comments} eventId={id} currentUser={currentUser}/>}
         </Div>
     )
 }
