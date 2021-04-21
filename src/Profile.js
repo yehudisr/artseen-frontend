@@ -4,18 +4,21 @@ import EditProfileForm from './EditProfileForm';
 import ProfileEventCard from './ProfileEventCard';
 
 
-function Profile({ currentUser }) {
-    const { firstname } = currentUser
+function Profile() {
+    
     const [events, setEvents] = useState([])
-    console.log(currentUser)
+    const getUser = localStorage.getItem('user')
+    const currentUser = JSON.parse(getUser)
 
     useEffect(() => {
         fetch(`http://localhost:3000/profile/${currentUser.id}`)
             .then(res => res.json())
-            .then(res => setEvents(res.events))
+            .then(res => setEvents(res.event_listings))
     }, [])
 
-    const displayEvents = events.map(event => <ProfileEventCard event={event} />)
+    console.log(events)
+
+    const displayEvents = events.map(event => <ProfileEventCard event={event.event} />)
     console.log(events)
 
     return (
