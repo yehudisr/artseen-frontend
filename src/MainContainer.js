@@ -28,7 +28,7 @@ const filterEvents = events.filter(event =>
         <div className="main-container">
         <h1>MAIN CONTAINER</h1>
             <Search search={search} handleSearch={handleSearch} />
-            <EventList events={filterEvents} currentUser={currentUser}/>
+            <EventList currentUser={currentUser} events={filterEvents}/>
         </div>
     )
 }

@@ -10,35 +10,35 @@ import Profile from "./Profile";
 import EventPage from "./EventPage";
 
 
+
 function App() {
-  const [page, setPage] = useState("/events")
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [page, setPage] = useState("/")
   const [currentUser, setCurrentUser] = useState(null)
 
   function handleUser(user){
     setCurrentUser(user)
-    setLoggedIn(true)
+   
   }
 
 
   return (
     <div className="App">
-      <Header />
-       <Navbar onChangePage={setPage} loggedIn={loggedIn}/>
-       {!currentUser && <LoginForm setLoggedIn={setLoggedIn}  handleUser={handleUser}/>}
+     <Header />
+       <Navbar onChangePage={setPage} /> 
       <Switch>
-        <Route exact path="/profile">
+        <Route exact path="/profile/:id">
           <Profile currentUser={currentUser}/>
         </Route>
-        <Route exact path="/events">
-          <MainContainer currentUser={currentUser} />
-        </Route> 
         <Route exact path="/events/:id">
           <EventPage />
         </Route>
+        <Route exact path="/login">
+        <LoginForm handleUser={handleUser}/>
+        </Route>
+        <Route exact path="/">
+          <MainContainer currentUser={currentUser} />
+        </Route> 
       </Switch>
-      
-      
     </div>
      );
 }

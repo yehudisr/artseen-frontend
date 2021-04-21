@@ -19,7 +19,22 @@ function EventCard({ event, currentUser }){
     }
 
     function handleSave(){
-        fetch("http://localhost:3000/event_listings")
+      
+       
+        fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+      
+            },
+            body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true})
+            })
+            .then (res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+
     }
 
     return(
