@@ -49,7 +49,7 @@ function Profile() {
                 <option value="seen">Seen</option>
                 <option value="booked">Booked</option>
             </select>
-            <ul>{userEvents}</ul>
+            <span>{userEvents}</span>
         </div>
     )
 }
