@@ -46,7 +46,7 @@ function EventCard({ event }){
             to={`/events/${id}`}
             exact 
             >Event Page</NavLink> */}
-            <button onClick={toggleComments}>show comments</button>
+            <Button onClick={toggleComments}>show comments</Button>
             {!saved && (<Button bg="blue" onClick={() => handleSave(event)}>Save</Button>)}
            { displayComments && <Comments comments={comments} eventId={id} currentUser={currentUser}/>}
         </Div>

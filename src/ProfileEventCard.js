@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
 import styled, { ThemeProvider } from "styled-components";
+import { Button, ButtonGroup } from "@chakra-ui/react"
 
 const Div = styled.div`
     border: 1px solid;
@@ -56,10 +57,10 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
             exact 
             >Event Page</NavLink> */}
 
-            { eventListing.booked ? <button name="booked" value={false} onClick={handleUpdate}>already booked</button> : <button name="booked" value={true} onClick={handleUpdate}>book it</button> }
+            { eventListing.booked ? <Button name="booked" value={false} onClick={handleUpdate}>already booked</Button> : <Button name="booked" value={true} onClick={handleUpdate}>book it</Button> }
 
-           {eventListing.seen ? <p>seen</p> : <button name="seen" value={true} onClick={handleUpdate}>Seen</button>}
-            <button onClick={handleDelete}>Delete</button>
+           {eventListing.seen ? <p>seen</p> : <Button name="seen" value={true} onClick={handleUpdate}>Seen</Button>}
+            <Button onClick={handleDelete}>Delete</Button>
         </Div>
     )
 }
