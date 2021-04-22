@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
 import styled, { ThemeProvider } from "styled-components";
+import { Button, ButtonGroup } from "@chakra-ui/react"
 const Div = styled.div`
     border: 1px solid;
     `
@@ -46,7 +47,7 @@ function EventCard({ event }){
             exact 
             >Event Page</NavLink> */}
             <button onClick={toggleComments}>show comments</button>
-            {!saved && (<button onClick={() => handleSave(event)}>Save</button>)}
+            {!saved && (<Button bg="blue" onClick={() => handleSave(event)}>Save</Button>)}
            { displayComments && <Comments comments={comments} eventId={id} currentUser={currentUser}/>}
         </Div>
     )
