@@ -5,6 +5,7 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import {Route, Switch} from 'react-router-dom'
 import { useState, useEffect } from 'react';
+import { Container } from "@chakra-ui/react"
 
 
 function MainContainer(){
@@ -25,12 +26,11 @@ const filterEvents = events.filter(event =>
 
 
     return(
-        <div className="main-container">
+        <Container maxW="xl" centerContent>
         <h1>Events</h1>
             <Search search={search} handleSearch={handleSearch} />
             <EventList  events={filterEvents}/>
-            {/* <EventList events={events} /> */}
-        </div>
+        </Container>
     )
 }
 

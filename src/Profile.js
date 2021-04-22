@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import EditProfileForm from './EditProfileForm';
-// import EventList from './EventList';
+import { Container } from "@chakra-ui/react"
 import ProfileEventCard from './ProfileEventCard';
 
 
