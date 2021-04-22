@@ -23,7 +23,6 @@ const filterEvents = events.filter(event =>
     event.title.toLowerCase().includes(search.toLowerCase())
   )
 
-  console.log(events)
 
     return(
         <div className="main-container">
