@@ -10,13 +10,14 @@ function EventPage(){
             .then(res => res.json())
             .then(setEvent)
     }, [])
-    const {title, description, image, date} = event
+    const {title, description, image, date_to_display} = event
+    console.log(event)
     return(
         
         <div className="event-detail">
              <h1>{title}</h1>
-            <image src={image} alt={title}/>
-            <strong>{date}</strong>
+            <img src={image} alt={title} style={{width: "300px"}}/>
+            <strong>{date_to_display}</strong>
             <p>{description}</p>
             {/* <link href={link}>Event Site</link> */}
         </div>

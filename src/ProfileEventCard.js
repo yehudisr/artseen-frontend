@@ -8,7 +8,7 @@ const Div = styled.div`
     `
 
 
-function ProfileEventCard({ event, eventListing }){
+function ProfileEventCard({ event, eventListing, onHandleRemove }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
 
@@ -16,46 +16,6 @@ function ProfileEventCard({ event, eventListing }){
     const [displayComments, setDisplayComments] = useState(false)
     const [booked, setBooked] = useState(false)
     const [seen, setSeen] = useState(false)
-   
-
-
-    // function handleBooked(){
-      
-       
-    //     fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
-    //         method: 'PATCH',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           'Accept': 'application/json'
-      
-    //         },
-    //         body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
-    //         })
-    //         .then (res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-    //         })
-
-    // }
-
-    // function handleUpdate(){
-      
-       
-    //     fetch(`http://localhost:3000/users/${currentUser.id}/events`, { 
-    //         method: 'PATCH',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           'Accept': 'application/json'
-      
-    //         },
-    //         body: JSON.stringify({event_id: id, user_id: currentUser.id, saved: true, booked: true, seen: false})
-    //         })
-    //         .then (res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-    //         })
-
-    // }
 
     function handleUpdate(e){
         setBooked(booked => !booked)
@@ -77,22 +37,29 @@ function ProfileEventCard({ event, eventListing }){
 
     function handleDelete(){
 
+        console.log(eventListing.id)
+        
+        fetch(`http://localhost:3000/event_listings/${eventListing.id}`, {
+             method: 'DELETE'
+             })
+             .then(data => {onHandleRemove(eventListing.id)})
     }
 
     return(
         <Div className="card">
             <h3>{event.title}</h3>
-            <img src={event.image} alt={event.title} style={{width: "300px"}}/>
+           <a href={`/events/${event.id}`}>
+            <img src={event.image} alt={event.title} style={{width: "300px"}}/></a>
               
-         <NavLink 
+         {/* <NavLink 
             to={`/events/${event.id}`}
             exact 
-            >Event Page</NavLink>
+            >Event Page</NavLink> */}
 
             { eventListing.booked ? <button name="booked" value={false} onClick={handleUpdate}>already booked</button> : <button name="booked" value={true} onClick={handleUpdate}>book it</button> }
 
            {eventListing.seen ? <p>seen</p> : <button name="seen" value={true} onClick={handleUpdate}>Seen</button>}
-            {/* <button name="seen" value={true} onClick={handleDelete}>Delete</button> */}
+            <button onClick={handleDelete}>Delete</button>
         </Div>
     )
 }

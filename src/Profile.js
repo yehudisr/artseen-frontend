@@ -16,9 +16,12 @@ function Profile() {
             .then(res => setEvents(res.event_listings))
     }, [])
 
-    console.log(events)
+    function handleRemove(id){
+        const removeItem = events.filter(eventListing => eventListing.id !== id)
+        setEvents(removeItem)
+    }
 
-    const displayEvents = events.map(eventlisting => <ProfileEventCard event={eventlisting.event} eventListing={eventlisting} />)
+    const displayEvents = events.map(eventlisting => <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />)
     console.log(events)
 
     return (

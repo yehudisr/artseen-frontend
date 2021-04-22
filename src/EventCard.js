@@ -10,11 +10,14 @@ function EventCard({ event }){
     const currentUser = JSON.parse(getUser)
     const {id, title, comments, image} = event
     const [displayComments, setDisplayComments] = useState(false)
+    const [saved, setSaved] = useState(false)
+
+
     function toggleComments(){
         setDisplayComments(displayComments => !displayComments)
     }
     function handleSave(){
-        console.log("ID", id)
+        
         fetch(`http://localhost:3000/event_listings`, { 
             method: 'POST',
             headers: {
@@ -25,19 +28,25 @@ function EventCard({ event }){
             })
             .then (res => res.json())
             .then(data => {
-                console.log(data)
+                if (data.id === null){
+                alert("you already saved this event!")
+                } else
+                {console.log(data)}
             })
+           
+            // setSaved(true)
     }
     return(
         <Div className="card">
             <h3>{title}</h3>
-            <img src={image} alt={title} style={{width: "300px"}}/>
-         <NavLink 
+            <a href={`/events/${id}`}>
+            <img src={image} alt={title} style={{width: "300px"}}/></a>
+         {/* <NavLink 
             to={`/events/${id}`}
             exact 
-            >Event Page</NavLink>
+            >Event Page</NavLink> */}
             <button onClick={toggleComments}>show comments</button>
-            <button onClick={() => handleSave(event)}>Save</button>
+            {!saved && (<button onClick={() => handleSave(event)}>Save</button>)}
            { displayComments && <Comments comments={comments} eventId={id} currentUser={currentUser}/>}
         </Div>
     )
