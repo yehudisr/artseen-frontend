@@ -35,27 +35,10 @@ function Profile() {
     })
     .map(eventlisting => <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />)
 
-    console.log(events)
-
-    // (eventlisting => <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />)
-
-
-
-    // const seenEvents = [...displayEvents].filter(eventListing => eventListing.seen === true).map(eventlisting => <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />)
-    
-    // const bookedEvents = [...displayEvents].filter(eventListing => eventListing.booked === true).map(eventlisting => <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />)
 
     function handleSelect(e){
         setFilter(filter => e.target.value)
-        console.log(e.target.value)
-
-        // if(e.target.value === "all"){
-        //     setDisplayEvents(displayEvents => allEvents)
-        // } else if(e.target.value === "seen"){
-        //     setDisplayEvents(displayEvents => seenEvents)
-        // } else if (e.target.value === "booked"){
-        //     setDisplayEvents(displayEvents => bookedEvents)
-        // }
+        console.log(e.target.value) 
     }
 
     return (
@@ -67,8 +50,6 @@ function Profile() {
                 <option value="booked">Booked</option>
             </select>
             <ul>{userEvents}</ul>
-            
-
         </div>
     )
 }
