@@ -1,9 +1,10 @@
+import Navbar from "./NavBar";
 
-
-function Header(){
+function Header({setLoggedIn, loggedIn}){
     return(
-        <div>
+        <div className="App-header">
             <h1>ARTSEEN</h1>
+            <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         </div>
         
     )

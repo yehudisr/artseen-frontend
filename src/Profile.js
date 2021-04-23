@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
-import EditProfileForm from './EditProfileForm';
-import { Container } from "@chakra-ui/react"
+import { Container, Select, Box } from "@chakra-ui/react"
 import ProfileEventCard from './ProfileEventCard';
+
 
 
 
 function Profile() {
     
     const [events, setEvents] = useState([])
-    const getUser = localStorage.getItem('user')
-    const currentUser = JSON.parse(getUser)
     const [filter, setFilter] = useState("all")
 
+    const getUser = localStorage.getItem('user')
+    const currentUser = JSON.parse(getUser)
+    console.log(events)
     useEffect(() => {
         fetch(`http://localhost:3000/profile/${currentUser.id}`)
             .then(res => res.json())
@@ -23,7 +24,7 @@ function Profile() {
         setEvents(removeItem)
     }
 
-    const userEvents = [...events]
+    const userEvents = events
     .filter(eventListing => {
         if (filter === "seen"){
             return eventListing.seen === true
@@ -42,15 +43,17 @@ function Profile() {
     }
 
     return (
-        <div className="user-profile">
-            <h3>{currentUser.firstname}</h3>
-            <select onChange={handleSelect}>
+        <Container>
+            <h1>Hello, {currentUser.firstname}</h1>
+            <Box>
+            <Select onChange={handleSelect}>
                 <option value="all">All</option>
                 <option value="seen">Seen</option>
                 <option value="booked">Booked</option>
-            </select>
+            </Select>
+            </Box>
             <span>{userEvents}</span>
-        </div>
+        </Container >
     )
 }
 

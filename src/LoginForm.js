@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import SignupForm from './SignupForm'
-import { useHistory } from "react-router-dom"
+import SignupForm from './SignupForm';
+import { useHistory } from "react-router-dom";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText, Input, Form, Button, InputGroup, InputRightElement, Box, Flex, Center, Spacer
+} from "@chakra-ui/react"
 
 function LoginForm({ handleUser }) {
 
@@ -10,15 +16,10 @@ function LoginForm({ handleUser }) {
     password: ""
   }
   const [formData, setFormData] = useState(initialState)
-
-
-  const [showSignup, setShowSignup] = useState(false)
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
 
   const history = useHistory()
-
-  function handleSignupToggle() {
-    setShowSignup(showSignup => !showSignup)
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -34,10 +35,8 @@ function LoginForm({ handleUser }) {
 
     })
       .then(res => res.json())
-      .then(res => {
-        console.log(res)
-        handleUser(res)
-        history.push('/')
+      .then(res => { 
+         handleUser(res)
       })
 
   }
@@ -51,33 +50,50 @@ function LoginForm({ handleUser }) {
 
 
   return (
+    <Center  h="300px" >
 
-    <div>
+   <Flex alignItems="center">
+   
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <input type="submit" value="login" />
-      </form>
+        
 
-      <button onClick={handleSignupToggle}>Signup</button>
+           <Box p={4}> <FormControl   isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input id="email" name="email" value={formData.email}
+          onChange={handleChange} placeholder="Email" />
+            </FormControl></Box><Spacer/>
+        
+{/*       
+           <Box> 
+            
+            <Input placeholder="Password" />
+         
+            </Box> */}
 
 
-      { showSignup && <SignupForm handleUser={handleUser} />}
+             <Box p={4}><InputGroup size="md"> 
+             <FormControl id="password" name="password" value={formData.password}
+           onChange={handleChange} isRequired>
+             <FormLabel>Password</FormLabel>
+            <Input
+              pr="4.5rem"
+              type={show ? "text" : "password"}
+              placeholder="Enter password"
+            />
+            <InputRightElement width="3.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? "Hide" : "Show"}
+              </Button>
+            </InputRightElement>   </FormControl>
+          </InputGroup>
+          </Box>
 
-    </div>
+       
+        <Button type="submit" value="login" >Login</Button> 
+     </form>  
+
+    </Flex>
+    </Center>
   );
 }
 

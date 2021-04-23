@@ -27,7 +27,7 @@ const filterEvents = events.filter(event =>
 
     return(
         <Container maxW="xl" centerContent>
-        <h1>Events</h1>
+       
             <Search search={search} handleSearch={handleSearch} />
             <EventList  events={filterEvents}/>
         </Container>
