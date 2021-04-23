@@ -1,76 +1,73 @@
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink, Redirect, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
+import { Button, ButtonGroup, Box, Flex, Spacer } from "@chakra-ui/react";
 
-const linkStyles = {
-    width: "100px",
-    padding: "12px",
-    margin: "0 6px 6px",
-    background: "blue",
-    textDecoration: "none",
-    color: "white",
+// const linkStyles = {
+//   width: "100px",
+//   padding: "12px",
+//   margin: "0 6px 6px",
+//   background: "blue",
+//   textDecoration: "none",
+//   color: "white",
+// }
+
+
+
+function NavBar({loggedIn, setLoggedIn}) {
+
+  const getUser = localStorage.getItem('user')
+  const currentUser = JSON.parse(getUser)
+  const history = useHistory()
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('user')
+    history.push('/')
+    setLoggedIn(false)
   }
-
+// if (currentUser){
+  return (
+    <div>
+   {currentUser || loggedIn ?  (<Flex>
+    <Box p="4" >
+      <NavLink
+        to='/events'
+        exact
+        
+      > Events</NavLink>
+      </Box>
+    <Box p="4" >
+      <NavLink
+        to={`/profile/${currentUser.id}`}
+        exact
+        
+      >My Events</NavLink>
+      </Box>
+      <Box p="4" >
+      <button onClick={handleLogout}>Logout</button>
+      </Box>
+    </Flex>) : (<Flex> <Box p="4" >
+      <NavLink
+        to={'/login'}
+        exact
+      >Login</NavLink>
+      </Box>
+      <Box p="4" >
+      <NavLink
+        to={'/signup'}
+        exact
+      >Signup</NavLink>
+      </Box>
+      </Flex>) } 
+      </div>
+      )
+   
  
 
-function NavBar({ loggedIn }){
-
-    const [showLogin, setShowLogin] = useState(false)
-    const [showSignup, setShowSignup] = useState(false)
-  
-  
-    function handleLoginToggle(){
-      setShowLogin(showLogin => !showLogin)
-    }
-  
-    function handleSignupToggle(){
-      setShowSignup(showSignup => !showSignup)
-    }
-
-    return(
-       <div>
-
-            { !loggedIn && (
-            <>
-           <button onClick={handleLoginToggle}>Login</button>
-           <button onClick={handleSignupToggle}>Signup</button>
-           
-            </>)}
-
-            {showSignup && <SignupForm />}
-            {showLogin && <LoginForm />}
-
-           { loggedIn &&  
-           <>
-            <NavLink 
-            to='/events'
-            exact
-            style={linkStyles} 
-            >Search Events</NavLink>
-
-           <NavLink 
-           to='/profile'
-           exact
-           style={linkStyles} 
-            >My Events</NavLink>
-
-            </>
-            }
-
-       </div>
-    )
 }
+  
 
 export default NavBar;
 
-{/* <NavLink 
-to='/login'
-exact
-style={linkStyles} 
- >Login</NavLink>
- <NavLink 
-to='/signup'
-exact
-style={linkStyles} 
- >Signup</NavLink> */}

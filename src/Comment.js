@@ -1,17 +1,13 @@
-import styled, { ThemeProvider } from "styled-components";
-
-const Div = styled.div`
-    border: 1px solid;
-    `
+import { useEffect, useState } from 'react'
 
 function Comment({ comment }){
-
+    console.log(comment)
     return(
-        
-        <Div>
-            <h6> Insert Name of User </h6>
+        <div>
+            <h6>{comment.username}</h6> 
             <p>{comment.content}</p>
-        </Div> 
+            <hr/>
+        </div> 
        
     )
 }
