@@ -29,7 +29,7 @@ function App() {
   
         <div className="App">
          <Route>
-              <Header loggedIn={loggedIn} path="/"/>
+              <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} path="/"/>
            </Route>
           <Switch>
             
