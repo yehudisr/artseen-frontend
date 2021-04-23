@@ -37,16 +37,16 @@ function EventCard({ event }){
     }
 
     return(
-      <Box maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Box maxW="lg" w="250px" borderWidth="1px" borderRadius="lg" overflow="hidden">
           
             <a href={`/events/${id}`}>
             <Image src={image} alt={title} maxH="150px"/>
              </a>
-               <Box p="6">
+               <Box p="8">
         <Box d="flex" alignItems="baseline">
           {/* <Badge borderRadius="full" px="1" colorScheme="teal">
             Featured
-          </Badge> */}
+          </Badge><Spacer/> */}
           <Box
             color="gray.500"
             fontWeight="semibold"
@@ -69,9 +69,9 @@ function EventCard({ event }){
            {title}
         </Box>
 
-        <Box>
+        {/* <Box>
           <Text fontSize="sm">description logic goes here</Text>
-        </Box>
+        </Box> */}
 
         <Box>
           

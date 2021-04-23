@@ -42,6 +42,7 @@ function Profile() {
         console.log(e.target.value) 
     }
 
+
     return (
         <Container >
             <Box padding="4">
@@ -54,7 +55,7 @@ function Profile() {
                 <option value="booked">Booked</option>
             </Select>
             </Box>
-            <SimpleGrid  minChildWidth="180px" spacing="40px">
+            <SimpleGrid  minChildWidth="180px" spacing="75px">
              {userEvents}
             </SimpleGrid>
         </Container >

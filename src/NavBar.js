@@ -4,15 +4,6 @@ import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import { Button, ButtonGroup, Box, Flex, Spacer } from "@chakra-ui/react";
 
-// const linkStyles = {
-//   width: "100px",
-//   padding: "12px",
-//   margin: "0 6px 6px",
-//   background: "blue",
-//   textDecoration: "none",
-//   color: "white",
-// }
-
 
 
 function NavBar({loggedIn, setLoggedIn}) {

@@ -6,7 +6,7 @@ function EventList({ events }){
 
     const displayEvents = events.map(event => <EventCard key={event.id} event={event} /> )
     return(
-      <SimpleGrid  minChildWidth="160px" spacing="40px">
+      <SimpleGrid  columns={[3, null, 3]} spacing="40px">
         {displayEvents}
        </SimpleGrid > 
 

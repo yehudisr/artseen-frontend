@@ -45,16 +45,16 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
 
     return(
 
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+        <Box maxW="lg" w="300px" borderWidth="1px" borderRadius="lg" overflow="hidden">
            
             <a href={`/events/${event.id}`}>
             <Image src={event.image} alt={event.title} maxH="175px"/>
              </a>
                <Box p="6">
                 <Box d="flex" alignItems="baseline">
-                    {/* <Badge borderRadius="full" px="2" colorScheme="teal">
-                    Featured
-                    </Badge> */}
+                    <Badge borderRadius="full" px="2" colorScheme="teal">
+                    Interested
+                    </Badge>
                  <Box
                 color="gray.500"
                 fontWeight="semibold"
@@ -77,9 +77,9 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
            {event.title}
         </Box>
 
-        <Box p="2">
+        {/* <Box p="2">
           <Text fontSize="sm">description logic goes here</Text>
-        </Box>
+        </Box> */}
 
         <Box>
           
