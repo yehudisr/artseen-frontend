@@ -1,14 +1,14 @@
 import EventCard from './EventCard'
-import { Container } from "@chakra-ui/react"
+import { SimpleGrid, Container, Grid, GridItem } from "@chakra-ui/react"
 
 
 function EventList({ events }){
 
     const displayEvents = events.map(event => <EventCard key={event.id} event={event} /> )
     return(
-      <Container>
-    <ul>{displayEvents}</ul>
-       </Container> 
+      <SimpleGrid  minChildWidth="160px" spacing="40px">
+        {displayEvents}
+       </SimpleGrid > 
 
     )
 }

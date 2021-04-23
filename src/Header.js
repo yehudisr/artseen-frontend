@@ -1,9 +1,10 @@
 import Navbar from "./NavBar";
+import {  Image }  from "@chakra-ui/react";
 
 function Header({setLoggedIn, loggedIn}){
     return(
         <div className="App-header">
-            <h1>ARTSEEN</h1>
+           <Image src='logo.png'/>
             <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         </div>
         

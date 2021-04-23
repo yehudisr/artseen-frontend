@@ -63,14 +63,6 @@ function LoginForm({ handleUser }) {
             <Input id="email" name="email" value={formData.email}
           onChange={handleChange} placeholder="Email" />
             </FormControl></Box><Spacer/>
-        
-{/*       
-           <Box> 
-            
-            <Input placeholder="Password" />
-         
-            </Box> */}
-
 
              <Box p={4}><InputGroup size="md"> 
              <FormControl isRequired>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Select, Box } from "@chakra-ui/react"
+import { Container, Select, Box, SimpleGrid, Text } from "@chakra-ui/react"
 import ProfileEventCard from './ProfileEventCard';
 
 
@@ -43,16 +43,20 @@ function Profile() {
     }
 
     return (
-        <Container>
-            <h1>Hello, {currentUser.firstname}</h1>
-            <Box>
+        <Container >
+            <Box padding="4">
+            <Text fontSize="4xl">Hello, {currentUser.firstname}</Text>
+             </Box>
+            <Box padding="4">
             <Select onChange={handleSelect}>
                 <option value="all">All</option>
                 <option value="seen">Seen</option>
                 <option value="booked">Booked</option>
             </Select>
             </Box>
-            <span>{userEvents}</span>
+            <SimpleGrid  minChildWidth="180px" spacing="40px">
+             {userEvents}
+            </SimpleGrid>
         </Container >
     )
 }

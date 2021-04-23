@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import {  Box, Text, Stack } from "@chakra-ui/react";
 
 function Comment({ comment }){
     console.log(comment)
     return(
-        <div>
-            <h6>{comment.username}</h6> 
-            <p>{comment.content}</p>
-            <hr/>
-        </div> 
+      <Box borderRadius="md" borderWidth="1px" >
+            <Stack spacing={2}>
+            <Text as="em" fontSize="sm">{comment.username}</Text>
+             <Text fontSize="md">{comment.content}</Text>
+             </Stack>
+       </Box>
+      
        
     )
 }

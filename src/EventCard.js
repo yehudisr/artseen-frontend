@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
 import styled, { ThemeProvider } from "styled-components";
-import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer } from "@chakra-ui/react";
+import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, Text } from "@chakra-ui/react";
 import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon } from '@chakra-ui/icons';
 
 
@@ -34,20 +34,19 @@ function EventCard({ event }){
                 } else
                 {console.log(data)}
             })
-           
-            // setSaved(true)
     }
+
     return(
-      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Box maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
           
             <a href={`/events/${id}`}>
-            <Image src={image} alt={title}/>
+            <Image src={image} alt={title} maxH="150px"/>
              </a>
                <Box p="6">
         <Box d="flex" alignItems="baseline">
-          <Badge borderRadius="full" px="2" colorScheme="teal">
-            New
-          </Badge>
+          {/* <Badge borderRadius="full" px="1" colorScheme="teal">
+            Featured
+          </Badge> */}
           <Box
             color="gray.500"
             fontWeight="semibold"
@@ -71,7 +70,7 @@ function EventCard({ event }){
         </Box>
 
         <Box>
-          description logic goes here
+          <Text fontSize="sm">description logic goes here</Text>
         </Box>
 
         <Box>
@@ -82,7 +81,7 @@ function EventCard({ event }){
                 </Box>
                     <Spacer />
                 <Box p="2">
-                <Button borderRadius="md" onClick={toggleComments}>Comments</Button>
+                <Button size="sm" borderRadius="md" onClick={toggleComments}>Comments</Button>
                 </Box>
             </Flex>
             <Box >
@@ -90,19 +89,6 @@ function EventCard({ event }){
             </Box>
         </Box>
 
-        {/* <Box d="flex" mt="2" alignItems="center">
-          {Array(5)
-            .fill("")
-            .map((_, i) => (
-              <StarIcon
-                key={i}
-                color={i < property.rating ? "teal.500" : "gray.300"}
-              />
-            ))}
-          <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {property.reviewCount} reviews
-          </Box>
-        </Box> */}
       </Box>
     </Box>
       
