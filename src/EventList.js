@@ -1,13 +1,14 @@
 import EventCard from './EventCard'
+import { Container } from "@chakra-ui/react"
 
 
 function EventList({ events }){
 
     const displayEvents = events.map(event => <EventCard key={event.id} event={event} /> )
     return(
-       <div>
+      <Container>
     <ul>{displayEvents}</ul>
-       </div>   
+       </Container> 
 
     )
 }

@@ -1,26 +1,23 @@
 import { useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
-import styled, { ThemeProvider } from "styled-components";
-import { Button, ButtonGroup } from "@chakra-ui/react"
-
-const Div = styled.div`
-    border: 1px solid;
-    `
+import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, IconButton } from "@chakra-ui/react";
+import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 
 function ProfileEventCard({ event, eventListing, onHandleRemove }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
 
-    // const [curEvent, setCurEvent] = useState(event)
+   
     const [displayComments, setDisplayComments] = useState(false)
-    const [booked, setBooked] = useState(false)
-    const [seen, setSeen] = useState(false)
+  
 
     function handleUpdate(e){
-        setBooked(booked => !booked)
-        setSeen(seen => !seen)
+
+       e.preventDefault()
+
+       console.log(e)
         console.log(e.target.name)
         console.log(e.target.value)
  
@@ -47,22 +44,66 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
     }
 
     return(
-        <Div className="card">
-            <h3>{event.title}</h3>
-           <a href={`/events/${event.id}`}>
-            <img src={event.image} alt={event.title} style={{width: "300px"}}/></a>
-              
-         {/* <NavLink 
-            to={`/events/${event.id}`}
-            exact 
-            >Event Page</NavLink> */}
 
-            { eventListing.booked ? <Button name="booked" value={false} onClick={handleUpdate}>already booked</Button> : <Button name="booked" value={true} onClick={handleUpdate}>book it</Button> }
+        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+           
+            <a href={`/events/${event.id}`}>
+            <Image src={event.image} alt={event.title}/>
+             </a>
+               <Box p="6">
+                <Box d="flex" alignItems="baseline">
+                    <Badge borderRadius="full" px="2" colorScheme="teal">
+                     New
+                    </Badge>
+                 <Box
+                color="gray.500"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="xs"
+                textTransform="uppercase"
+                ml="2"
+                >
+                {event.date_to_display}
+            </Box>
+        </Box>
 
-           {eventListing.seen ? <p>seen</p> : <Button name="seen" value={true} onClick={handleUpdate}>Seen</Button>}
-            <Button onClick={handleDelete}>Delete</Button>
-        </Div>
-    )
+        <Box
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          isTruncated
+        >
+           {event.title}
+        </Box>
+
+        <Box>
+          description logic goes here
+        </Box>
+
+        <Box>
+          
+            <Flex>
+                <Box p="2">
+                 {eventListing.booked ? <Button name="booked" value={false} onClick={handleUpdate}>already booked</Button> : <Button name="booked" value={true} onClick={handleUpdate}>book it</Button> } 
+
+                </Box>
+                  
+                <Box p="2">
+                { 
+                eventListing.seen ? 
+                <Button name="seen" value={false} onClick={handleUpdate}>seen</Button> : <Button name="seen" value={true} onClick={handleUpdate} > Not seen</Button>}
+                </Box> <Spacer />
+               
+               <Box p="2" >
+                 <IconButton icon={<DeleteIcon/>} onClick={handleDelete}/>
+                </Box>
+            </Flex>
+            
+        </Box>
+        </Box>
+        </Box>  
+    ) 
 }
 
 export default ProfileEventCard;
