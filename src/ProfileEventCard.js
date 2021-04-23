@@ -96,20 +96,19 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
                 </Box>
                   
                 <Box p="2">
-                {eventListing.seen ? <Button name="seen" value={false} onClick={handleUpdate}>seen</Button>: <Button name="seen" value={true} onClick={handleUpdate} > Not seen</Button>}
+                { 
+                eventListing.seen ? 
+                <Button name="seen" value={false} onClick={handleUpdate}>seen</Button> : <Button name="seen" value={true} onClick={handleUpdate} > Not seen</Button>}
                 </Box> <Spacer />
+               
                <Box p="2" >
                  <IconButton icon={<DeleteIcon/>} onClick={handleDelete}/>
                 </Box>
             </Flex>
             
         </Box>
-
         </Box>
-  </Box>
- 
-           
-      
+        </Box>  
     ) 
 }
 
