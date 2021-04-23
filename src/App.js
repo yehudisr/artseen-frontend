@@ -24,16 +24,12 @@ function App() {
     setLoggedIn(true)
   }
  
-  // useEffect(()=>{
-  //   setLoggedIn(loggedIn => !loggedIn)
-
-  // }, [currentUser])
 
   return (
   
         <div className="App">
          <Route>
-              <Header setLoggedIn={setLoggedIn} loggedIn={loggedIn} path="/"/>
+              <Header loggedIn={loggedIn} path="/"/>
            </Route>
           <Switch>
             
@@ -41,7 +37,7 @@ function App() {
               <Profile  />
             </Route>
             <Route exact path="/events">
-              <MainContainer currentUser={currentUser} />
+              <MainContainer />
             </Route>
             <Route exact path="/events/:id">
               <EventPage />

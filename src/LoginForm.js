@@ -23,6 +23,7 @@ function LoginForm({ handleUser }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(formData)
 
     fetch(`http://localhost:3000/login`, {
       method: 'POST',
@@ -72,10 +73,13 @@ function LoginForm({ handleUser }) {
 
 
              <Box p={4}><InputGroup size="md"> 
-             <FormControl id="password" name="password" value={formData.password}
-           onChange={handleChange} isRequired>
+             <FormControl isRequired>
              <FormLabel>Password</FormLabel>
             <Input
+              id="password" 
+              name="password" 
+              value={formData.password}
+              onChange={handleChange} 
               pr="4.5rem"
               type={show ? "text" : "password"}
               placeholder="Enter password"

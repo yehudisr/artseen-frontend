@@ -30,7 +30,7 @@ function NavBar({loggedIn, setLoggedIn}) {
 // if (currentUser){
   return (
     <div>
-   {loggedIn ? (<Flex>
+   {currentUser || loggedIn ?  (<Flex>
     <Box p="4" >
       <NavLink
         to='/events'
