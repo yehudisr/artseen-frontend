@@ -9,20 +9,14 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
 
-    // const [curEvent, setCurEvent] = useState(event)
+   
     const [displayComments, setDisplayComments] = useState(false)
-    // const [booked, setBooked] = useState(eventListing.booked)
-    // const [seen, setSeen] = useState(eventListing.saved)
+  
 
     function handleUpdate(e){
 
        e.preventDefault()
 
-        // if (e.target.value === "booked"){
-        //     setBooked(booked => !booked)
-        // } else if (e.target.value === "seen"){
-        //     setSeen(seen => !seen)
-        // }
        console.log(e)
         console.log(e.target.name)
         console.log(e.target.value)
