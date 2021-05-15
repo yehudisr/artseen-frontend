@@ -37,12 +37,21 @@ function EventCard({ event }){
            
             // setSaved(true)
     }
+
+    function imagePath(){
+      window.location = `/events/${id}`
+    }
+
     return(
-      <Flex direction="column" w="300px" h="100%" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Flex direction="column" w="100%" h="100%" borderWidth="1px" borderRadius="lg" overflow="hidden">
           
-            <a href={`/events/${id}`}>
-            <Image src={image} alt={title}/>
-             </a>
+            {/* <a href={`/events/${id}`}> */}
+            <Image 
+            src={image} 
+            alt={title}
+            onClick={imagePath}
+             />
+             {/* </a> */}
                <Box p="6">
         <Box d="flex" alignItems="baseline">
           <Badge borderRadius="full" px="2" colorScheme="teal">
