@@ -28,7 +28,7 @@ const filterEvents = events.filter(event =>
 
     return(
 
-            <Flex >
+            <Flex margin="25" >
 
         <Stack justifyContent="center">
         <Box>
