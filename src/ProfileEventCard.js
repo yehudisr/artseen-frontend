@@ -43,13 +43,23 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
              .then(data => {onHandleRemove(eventListing.id)})
     }
 
+    function imagePath(){
+        window.location = `/events/${event.id}`
+    }
+
     return(
 
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+        <Flex direction="column" w="350px" h="100%" borderWidth="1px" borderRadius="lg" overflow="hidden" justifyContent="center">
            
-            <a href={`/events/${event.id}`}>
-            <Image src={event.image} alt={event.title}/>
-             </a>
+           
+            <Image 
+            src={event.image} 
+            alt={event.title}
+            onClick={imagePath}
+            height="200px"
+            // fit="fill"
+            />
+             
                <Box p="6">
                 <Box d="flex" alignItems="baseline">
                     <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -85,7 +95,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
           
             <Flex>
                 <Box p="2">
-                 {eventListing.booked ? <Button name="booked" value={false} onClick={handleUpdate}>already booked</Button> : <Button name="booked" value={true} onClick={handleUpdate}>book it</Button> } 
+                 {eventListing.booked ? <Button name="booked" value={false} onClick={handleUpdate}>booked</Button> : <Button name="booked" value={true} onClick={handleUpdate}>book it</Button> } 
 
                 </Box>
                   
@@ -102,7 +112,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
             
         </Box>
         </Box>
-        </Box>  
+        </Flex>  
     ) 
 }
 

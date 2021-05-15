@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Select, Box } from "@chakra-ui/react"
+import { Container, Select, Box, Wrap, WrapItem, Flex, Heading } from "@chakra-ui/react"
 import ProfileEventCard from './ProfileEventCard';
 
 
@@ -34,7 +34,10 @@ function Profile() {
             return eventListing
         }
     })
-    .map(eventlisting => <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />)
+    .map(eventlisting =>
+    <WrapItem>
+        <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />
+    </WrapItem> )
 
 
     function handleSelect(e){
@@ -43,17 +46,18 @@ function Profile() {
     }
 
     return (
-        <Container>
-            <h1>Hello, {currentUser.firstname}</h1>
-            <Box>
-            <Select onChange={handleSelect}>
+        <Flex direction="column" margin="25px" >
+            <Heading>Hello, {currentUser.firstname}</Heading>
+    
+            <Select margin="7" w="150px" onChange={handleSelect}>
                 <option value="all">All</option>
                 <option value="seen">Seen</option>
                 <option value="booked">Booked</option>
             </Select>
-            </Box>
-            <span>{userEvents}</span>
-        </Container >
+          
+        
+            <Wrap spacing="30px">{userEvents}</Wrap>
+        </Flex >
     )
 }
 
