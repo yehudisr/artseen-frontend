@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react'
+import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem, Heading, Text } from "@chakra-ui/react";
 
 function EventPage(){
     const [event, setEvent] = useState({})
@@ -14,12 +15,16 @@ function EventPage(){
    
     return(
         
-        <div className="event-detail">
-             <h1>{title}</h1>
-            <img src={image} alt={title} style={{width: "300px"}}/>
-            <strong>{date_to_display}</strong>
-            <p>{description}</p>
-        </div>
+        <Flex direction="column" className="event-detail" justifyContent="center">
+             <Heading margin="5">{title}</Heading>
+            
+            <Flex>
+                <Image src={image} alt={title} style={{width: "300px"}} padding="2" />
+                <strong>{date_to_display}</strong>
+                <Text>{description}</Text>
+            </Flex>
+            
+        </Flex>
        
     )
 }
