@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
 import styled, { ThemeProvider } from "styled-components";
-import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer } from "@chakra-ui/react";
+import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem } from "@chakra-ui/react";
 import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon } from '@chakra-ui/icons';
 
 
@@ -38,7 +38,7 @@ function EventCard({ event }){
             // setSaved(true)
     }
     return(
-      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Flex direction="column" w="300px" h="100%" borderWidth="1px" borderRadius="lg" overflow="hidden">
           
             <a href={`/events/${id}`}>
             <Image src={image} alt={title}/>
@@ -104,7 +104,7 @@ function EventCard({ event }){
           </Box>
         </Box> */}
       </Box>
-    </Box>
+    </Flex>
       
           
        

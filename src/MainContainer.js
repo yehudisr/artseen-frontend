@@ -5,7 +5,7 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import {Route, Switch} from 'react-router-dom'
 import { useState, useEffect } from 'react';
-import { Container } from "@chakra-ui/react"
+import { Container, Wrap, Flex, Stack, Box } from "@chakra-ui/react"
 
 
 function MainContainer(){
@@ -27,11 +27,20 @@ const filterEvents = events.filter(event =>
 
 
     return(
-        <Container maxW="xl" centerContent>
-       
-            <Search search={search} handleSearch={handleSearch} />
-            <EventList  events={filterEvents}/>
-        </Container>
+
+            <Flex >
+
+        <Stack justifyContent="center">
+        <Box>
+        <Search search={search} handleSearch={handleSearch} />
+        </Box>
+
+                <EventList  events={filterEvents}/>
+        </Stack>
+                
+            </Flex>
+        
+        
     )
 }
 
