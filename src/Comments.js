@@ -1,10 +1,7 @@
 import Comment from './Comment'
 import { useState } from 'react';
 import styled, { ThemeProvider } from "styled-components";
-
-const Div = styled.div`
-    border: 1px solid;
-    `
+import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem, Input, Form } from "@chakra-ui/react";
 
 function Comments({comments, eventId, currentUser}){
 
@@ -42,18 +39,25 @@ function Comments({comments, eventId, currentUser}){
     }
 
     return(
-        <Div>
+        <div>
         <ul>
         {displayComments}
         </ul>
-        <form>
-            <input 
+        
+            <Input
+            variant="filled"
+            placeholder="comment..."
+            size="sm"
+            marginTop="2" 
             type="text"
             value={formData} 
             onChange={handleChange} />
-            <input type="button" value="post" onClick={handleClick}/>
-        </form>
-        </Div>
+            <Button
+            marginTop="2"
+            variant="outline" 
+            colorScheme="blue" value="post" 
+            onClick={handleClick}>Post</Button>
+        </div>
        
     )
 }

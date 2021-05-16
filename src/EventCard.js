@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
 import styled, { ThemeProvider } from "styled-components";
@@ -9,10 +9,25 @@ import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon } from '@c
 function EventCard({ event }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
-    const {id, title, comments, image, date_to_display} = event
+    const {id, title, comments, image, date_to_display, description} = event
     const [displayComments, setDisplayComments] = useState(false)
     const [saved, setSaved] = useState(false)
+    const [descPreview, setDescPreview] = useState("")
 
+
+    useEffect(() => {
+      // console.log(description.substring(0, 100))
+       if (description === null || undefined) {
+        setDescPreview(descPreview => "No Description Available")
+      } else if(description.length > 200){
+        const desc = description.substring(0, 100) + "..."
+        setDescPreview(descPreview => desc)
+      } else {
+        setDescPreview(descPreview => description)
+      }
+    }, [])
+
+    
  
     function toggleComments(){
         setDisplayComments(displayComments => !displayComments)
@@ -80,7 +95,7 @@ function EventCard({ event }){
         </Box>
 
         <Box>
-          description logic goes here
+          {descPreview}
         </Box>
 
         <Box>

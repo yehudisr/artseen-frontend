@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
 import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, IconButton } from "@chakra-ui/react";
@@ -8,18 +8,25 @@ import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon, ViewIcon,
 function ProfileEventCard({ event, eventListing, onHandleRemove }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
-
-   
     const [displayComments, setDisplayComments] = useState(false)
+    const [descPreview, setDescPreview] = useState("")
+
+    useEffect(() => {
+        // console.log(description.substring(0, 100))
+         if (event.description === null || undefined) {
+          setDescPreview(descPreview => "No Description Available")
+        } else if(event.description.length > 200){
+          const desc = event.description.substring(0, 100) + "..."
+          setDescPreview(descPreview => desc)
+        } else {
+          setDescPreview(descPreview => event.description)
+        }
+      }, [])
   
 
     function handleUpdate(e){
 
        e.preventDefault()
-
-       console.log(e)
-        console.log(e.target.name)
-        console.log(e.target.value)
  
         fetch(`http://localhost:3000/event_listings/${eventListing.id}`, {
              method: 'PATCH',
@@ -88,7 +95,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
         </Box>
 
         <Box>
-          description logic goes here
+          {descPreview}
         </Box>
 
         <Box>
