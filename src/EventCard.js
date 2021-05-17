@@ -5,7 +5,6 @@ import styled, { ThemeProvider } from "styled-components";
 import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem } from "@chakra-ui/react";
 import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon } from '@chakra-ui/icons';
 
-
 function EventCard({ event }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)

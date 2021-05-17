@@ -45,13 +45,17 @@ function Comments({comments, eventId, currentUser}){
         </ul>
         
             <Input
+            multiline
             variant="filled"
             placeholder="comment..."
             size="sm"
             marginTop="2" 
             type="text"
             value={formData} 
-            onChange={handleChange} />
+            onChange={handleChange}
+            w="300px"
+             />
+             <br/>
             <Button
             marginTop="2"
             variant="outline" 

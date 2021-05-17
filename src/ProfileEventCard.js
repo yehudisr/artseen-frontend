@@ -22,7 +22,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
           setDescPreview(descPreview => event.description)
         }
       }, [])
-  
+  console.log(event.description)
 
     function handleUpdate(e){
 
