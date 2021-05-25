@@ -21,7 +21,7 @@ function EventPage(){
    
     return(
         
-        <Flex direction="column" className="event-detail" justifyContent="center" alignItems="center" >
+        <Flex direction="column" className="event-detail" justifyContent="center" alignItems="center" marginBottom="25px" >
              <Heading margin="5"  >{title}</Heading>
             
             

@@ -13,7 +13,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate 
     const {id, title, description, image, date, link="https://www.artic.edu/"} = event
 
     useEffect(() => {
-        // console.log(description.substring(0, 100))
+        
          if (description === null || undefined) {
           setDescPreview(descPreview => "No Description Available")
         } else if(description.length > 200){
