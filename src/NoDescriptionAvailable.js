@@ -7,7 +7,7 @@ const Div = styled.div`
     width: 450px;
     padding: 60px;
     margin-top: 125px;
-    margin-left: 300px;
+    margin-left: 250px;
 
 `
 const P = styled.p`

@@ -24,6 +24,18 @@ function Profile() {
         setEvents(removeItem)
     }
 
+    function handleUpdate(event){
+        console.log(event)
+        const updateItem = events.map(eventListing => {
+            if(eventListing.id !== event.id){
+                return eventListing
+            } else {
+                return event
+            }
+        })
+        setEvents(events => updateItem)
+    }
+
     const userEvents = events
     .filter(eventListing => {
         if (filter === "seen"){
@@ -36,7 +48,7 @@ function Profile() {
     })
     .map(eventlisting =>
     <WrapItem>
-        <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} />
+        <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} onHandleUpdate={handleUpdate} />
     </WrapItem> )
 
 

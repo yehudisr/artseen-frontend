@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem, Heading, Text } from "@chakra-ui/react";
+import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem, Heading, Text, Link } from "@chakra-ui/react";
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+
 import NoDescriptionAvailable from './NoDescriptionAvailable'
 
 function EventPage(){
@@ -12,25 +14,31 @@ function EventPage(){
             .then(res => res.json())
             .then(setEvent)
     }, [])
-    const {title, description, image, date_to_display} = event
+    const {title, description, image, date_to_display, link="https://www.artic.edu/"} = event
+    
+    
 
-    console.log(description)
-    console.log(date_to_display)
    
     return(
         
-        <Flex direction="column" className="event-detail" justifyContent="center">
-             <Heading margin="5">{title}</Heading>
+        <Flex direction="column" className="event-detail" justifyContent="center" alignItems="center" >
+             <Heading margin="5"  >{title}</Heading>
             
-            <Flex>
-                <Flex direction="column">
+            
+                <Flex direction="column" alignItems="center">
                     <Image src={image} alt={title} style={{width: "300px"}} padding="2" marginLeft="17" />
-                    
+                    <Flex direction="row">
+                    <Link href={link} isExternal>
+                     <ExternalLinkIcon mx="2px" />
+                </Link>
                     <strong>{date_to_display}</strong>
-            
+                     </Flex>
                 </Flex>
-                { description ? <Text>{description}</Text> : <NoDescriptionAvailable/>}
-            </Flex>
+                <Flex className="description" >
+                {/* <Heading margin="5">{title}</Heading> */}
+                { description ? <Text style={{width: "800px"}}>{description}</Text> : <Box><NoDescriptionAvailable/></Box>}    
+                </Flex>
+          
             
         </Flex>
        

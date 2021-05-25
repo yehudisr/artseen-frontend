@@ -5,26 +5,26 @@ import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, IconButton } from
 import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 
-function ProfileEventCard({ event, eventListing, onHandleRemove }){
+function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
     const [displayComments, setDisplayComments] = useState(false)
     const [descPreview, setDescPreview] = useState("")
+    const {id, title, description, image, date, link="https://www.artic.edu/"} = event
 
     useEffect(() => {
         // console.log(description.substring(0, 100))
-         if (event.description === null || undefined) {
+         if (description === null || undefined) {
           setDescPreview(descPreview => "No Description Available")
-        } else if(event.description.length > 200){
-          const desc = event.description.substring(0, 100) + "..."
+        } else if(description.length > 200){
+          const desc = description.substring(0, 100) + "..."
           setDescPreview(descPreview => desc)
         } else {
-          setDescPreview(descPreview => event.description)
+          setDescPreview(descPreview => description)
         }
       }, [])
-  console.log(event.description)
 
-    function handleUpdate(e){
+    function handleUpdateBooked(e){
 
        e.preventDefault()
  
@@ -37,8 +37,29 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
              body: JSON.stringify({[e.target.name]: e.target.value})
          })
             .then(res => res.json())
-            .then(console.log)
+            .then(
+              res => {
+                onHandleUpdate(res)
+                window.open(link, '_blank')
+              }
+            )
     }
+
+    function handleUpdateSeen(e){
+
+      e.preventDefault()
+
+       fetch(`http://localhost:3000/event_listings/${eventListing.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({[e.target.name]: e.target.value})
+        })
+           .then(res => res.json())
+           .then(res => onHandleUpdate(res))
+   }
 
     function handleDelete(){
 
@@ -51,7 +72,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
     }
 
     function imagePath(){
-        window.location = `/events/${event.id}`
+        window.location = `/events/${id}`
     }
 
     return(
@@ -60,8 +81,8 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
            
            
             <Image 
-            src={event.image} 
-            alt={event.title}
+            src={image} 
+            alt={title}
             onClick={imagePath}
             height="200px"
             // fit="fill"
@@ -91,7 +112,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
           lineHeight="tight"
           isTruncated
         >
-           {event.title}
+           {title}
         </Box>
 
         <Box>
@@ -102,14 +123,14 @@ function ProfileEventCard({ event, eventListing, onHandleRemove }){
           
             <Flex>
                 <Box p="2">
-                 {eventListing.booked ? <Button name="booked" value={false} onClick={handleUpdate}>booked</Button> : <Button name="booked" value={true} onClick={handleUpdate}>book it</Button> } 
+                 {eventListing.booked ? <Button name="booked" value={false} onClick={handleUpdateBooked}>booked</Button> : <Button name="booked" value={true} onClick={handleUpdateBooked}>book it</Button> } 
 
                 </Box>
                   
                 <Box p="2">
                 { 
                 eventListing.seen ? 
-                <Button name="seen" value={false} onClick={handleUpdate}>seen</Button> : <Button name="seen" value={true} onClick={handleUpdate} > Not seen</Button>}
+                <Button name="seen" value={false} onClick={handleUpdateSeen}>seen</Button> : <Button name="seen" value={true} onClick={handleUpdateSeen} > Not seen</Button>}
                 </Box> <Spacer />
                
                <Box p="2" >
