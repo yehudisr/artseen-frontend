@@ -11,13 +11,12 @@ import { Container, Wrap, Flex, Stack, Box } from "@chakra-ui/react"
 function MainContainer(){
 const [events, setEvents] = useState([])
 const [search, setSearch] = useState('')
-console.log(events)
 useEffect(() =>{
     fetch('http://localhost:3000/events')
         .then(res => res.json())
         .then(setEvents)
 }, [])
-console.log(events)
+
 
 const handleSearch = (e) => setSearch(e)
 

@@ -17,7 +17,7 @@ function EventCard({ event }){
     useEffect(() => {
       // console.log(description.substring(0, 100))
        if (description === null || undefined) {
-        setDescPreview(descPreview => null)
+        setDescPreview(descPreview => "loading...")
       } else if(description.length > 200){
         const desc = description.substring(0, 100) + "..."
         setDescPreview(descPreview => desc)
@@ -25,6 +25,8 @@ function EventCard({ event }){
         setDescPreview(descPreview => description)
       }
     }, [])
+
+    
 
     
  
@@ -92,12 +94,12 @@ function EventCard({ event }){
         >
            {title}
         </Box>
-        <Flex justifyContent="center">
-        { descPreview ? <Box>
+        <Box>
+        
           {descPreview}
-        </Box> : <Box border="1px solid" w="50%" height="75px" padding="20px">No Description Available</Box>}
+       
 
-        </Flex>
+        </Box>
 
         <Box>
           

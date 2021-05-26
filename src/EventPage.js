@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem, Heading, Text, Link } from "@chakra-ui/react";
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 
-import NoDescriptionAvailable from './NoDescriptionAvailable'
-
 function EventPage(){
     const [event, setEvent] = useState({})
     const { id } = useParams();
@@ -36,7 +34,7 @@ function EventPage(){
                 </Flex>
                 <Flex className="description" >
                 {/* <Heading margin="5">{title}</Heading> */}
-                { description ? <Text style={{width: "800px"}}>{description}</Text> : <Box><NoDescriptionAvailable/></Box>}    
+                { description }   
                 </Flex>
           
             
