@@ -27,15 +27,16 @@ const filterEvents = events.filter(event =>
 
     return(
 
-            <Flex margin="25" >
-
-        <Stack justifyContent="center">
-        <Box>
-        <Search search={search} handleSearch={handleSearch} />
-        </Box>
-
-                <EventList  events={filterEvents}/>
-        </Stack>
+            <Flex margin="25" direction="column" alignItems="center">
+               <Box alignItems="center" w="80%">
+                <Search search={search} handleSearch={handleSearch} />
+                </Box>
+                {/* <Stack justifyContent="center"> */}
+              
+               <Box>
+                        <EventList  events={filterEvents}/>
+                        </Box>
+                {/* </Stack> */}
                 
             </Flex>
         

@@ -1,4 +1,6 @@
-import { Button, FormControl, Box, FormLabel, Input, Flex, Spacer } from "@chakra-ui/react";
+import { Button, FormControl, Box, FormLabel, Input, Flex, Spacer, InputLeftElement, InputGroup } from "@chakra-ui/react";
+import { Search2Icon } from '@chakra-ui/icons'
+
 
 function Search({search, handleSearch}){
 
@@ -9,15 +11,22 @@ function Search({search, handleSearch}){
 
 
     return(
-        <Flex>
-             <Box  w="300px" p={4}> 
+        <Flex >
+             <Box  w="35%" p={4}> 
             <form onSubmit={handleSubmit}>
-                <FormControl id="email">
-                <Input type="text"
+                <FormControl >
+                 <InputGroup>
+                <InputLeftElement
+                    pointerEvents="none"
+                    children={<Search2Icon color="gray.300" />}
+                    />
+                <Input boxShadow="base" borderRadius="md" borderWidth="1px"
+                type="text"
                 id="search"
-                placeholder="search art events"
+                placeholder=" search art events"
                 value={search}
                 onChange={(e) => handleSearch(e.target.value)} />
+                </InputGroup>
                 </FormControl> 
             </form>
             </Box>

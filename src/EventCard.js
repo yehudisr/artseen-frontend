@@ -63,6 +63,8 @@ function EventCard({ event }){
           
             {/* <a href={`/events/${id}`}> */}
             <Image 
+            
+            objectFit="cover"
             src={image} 
             alt={title}
             onClick={imagePath}

@@ -1,16 +1,20 @@
 import EventCard from './EventCard'
-import { Container, Wrap, WrapItem } from "@chakra-ui/react"
+import { Container, Wrap, WrapItem, Center } from "@chakra-ui/react"
 
 
 function EventList({ events }){
 
     const displayEvents = events.map(event => 
-    <WrapItem boxShadow="dark-lg" borderRadius="lg" borderWidth="1px" h="100%">
-      <EventCard key={event.id} event={event} />
+    <WrapItem boxShadow="dark-lg" borderRadius="lg" borderWidth="1px" h="100%" >
+      <Center  w="350px" ><EventCard key={event.id} event={event} /></Center>
     </WrapItem>
      )
     return(
-      <Wrap spacing="45px" justify="center">
+      <Wrap spacing="45px" 
+      // justify="center" 
+      // direction="column"
+      
+      >
     {displayEvents}
        </Wrap> 
 
