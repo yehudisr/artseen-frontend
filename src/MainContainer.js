@@ -27,10 +27,10 @@ const filterEvents = events.filter(event =>
 
     return(
 
-            <Flex margin="25" direction="column" alignItems="center">
-               <Box alignItems="center" w="80%">
+            <Flex margin="25" direction="column" alignItems="center" justifyContent="center">
+               <Flex justifyContent='center' w="100%" >
                 <Search search={search} handleSearch={handleSearch} />
-                </Box>
+                </Flex>
                 {/* <Stack justifyContent="center"> */}
               
                <Box>
