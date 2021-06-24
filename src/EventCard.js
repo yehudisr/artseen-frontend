@@ -51,8 +51,11 @@ function EventCard({ event }){
                 {console.log(data)}
             })
            
-            // setSaved(true)
+  
+            setSaved(true)
     }
+
+    console.log(event)
 
     function imagePath(){
       window.location = `/events/${id}`
@@ -73,7 +76,7 @@ function EventCard({ event }){
                <Box p="6">
         <Box d="flex" alignItems="baseline">
           <Badge borderRadius="full" px="2" colorScheme="teal">
-            New
+           New
           </Badge>
           <Box
             color="gray.500"
@@ -107,7 +110,7 @@ function EventCard({ event }){
           
             <Flex>
                 <Box p="2">
-                    {!saved && (<Button size="sm" variant="ghost" borderRadius="md" onClick={() => handleSave(event)}><AddIcon w={6} h={6} /></Button>)}
+                    <Button size="sm" variant="ghost" borderRadius="md" onClick={() => handleSave(event)}><AddIcon w={6} h={6} /></Button>
                 </Box>
                     <Spacer />
                 <Box p="2">

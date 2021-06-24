@@ -18,7 +18,7 @@ function Search({ search, handleSearch }) {
   }
 
   return (
-      <Box w='30%' p={4}>
+      <Box w='30%' p={4} marginBottom="20px">
         <form onSubmit={handleSubmit}>
           <FormControl>
             <InputGroup>

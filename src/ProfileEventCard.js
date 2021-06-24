@@ -11,9 +11,10 @@ function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate,
     const currentUser = JSON.parse(getUser)
     const [displayComments, setDisplayComments] = useState(false)
     const [descPreview, setDescPreview] = useState("")
-    const {id, title, description, image, date, date_to_display, link="https://www.artic.edu/"} = event
+    const {id, title, description, image, date, link="https://www.artic.edu/"} = event
 
-    console.log(date, date_to_display)
+    const displayDate = new Date(`${date}`).toLocaleString('en-US', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
+    console.log(event)
 
     useEffect(() => {
         
@@ -104,7 +105,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate,
                 textTransform="uppercase"
                 ml="2"
                 >
-                {date_to_display}
+                {displayDate}
             </Box>
         </Box>
 
