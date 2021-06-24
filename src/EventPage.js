@@ -32,7 +32,7 @@ function EventPage(){
                     <strong>{date_to_display}</strong>
                      </Flex>
                 </Flex>
-                <Flex className="description" >
+                <Flex margin="20px" className="description" >
                 {/* <Heading margin="5">{title}</Heading> */}
                 { description }   
                 </Flex>
