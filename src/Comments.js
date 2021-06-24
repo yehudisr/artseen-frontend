@@ -53,7 +53,9 @@ function Comments({comments, eventId, currentUser}){
             type="text"
             value={formData} 
             onChange={handleChange}
-            w="300px"
+            w="290px"
+            borderRadius = "8px"
+            padding="20px"
              />
              <br/>
             <Button
