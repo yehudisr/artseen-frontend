@@ -48,7 +48,7 @@ function Profile() {
     })
     .map(eventlisting =>
     <WrapItem>
-        <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} onHandleUpdate={handleUpdate} />
+        <ProfileEventCard key={eventlisting.id} event={eventlisting.event} eventListing={eventlisting} onHandleRemove={handleRemove} onHandleUpdate={handleUpdate} filter={filter} />
     </WrapItem> )
 
 

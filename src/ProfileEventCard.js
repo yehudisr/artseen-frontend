@@ -3,14 +3,17 @@ import { NavLink} from 'react-router-dom';
 import Comments from './Comments';
 import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, IconButton } from "@chakra-ui/react";
 import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 
-function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate }){
+function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate, filter }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
     const [displayComments, setDisplayComments] = useState(false)
     const [descPreview, setDescPreview] = useState("")
-    const {id, title, description, image, date, link="https://www.artic.edu/"} = event
+    const {id, title, description, image, date, date_to_display, link="https://www.artic.edu/"} = event
+
+    console.log(date, date_to_display)
 
     useEffect(() => {
         
@@ -101,7 +104,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate 
                 textTransform="uppercase"
                 ml="2"
                 >
-                {event.date_to_display}
+                {date_to_display}
             </Box>
         </Box>
 
@@ -128,14 +131,13 @@ function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate 
                 </Box>
                   
                 <Box p="2">
-                { 
-                eventListing.seen ? 
-                <Button name="seen" value={false} onClick={handleUpdateSeen}>seen</Button> : <Button name="seen" value={true} onClick={handleUpdateSeen} > Not seen</Button>}
+                 { eventListing.seen ? 
+                <Button name="seen" value={false} onClick={handleUpdateSeen}>.<ViewIcon />.</Button> : <Button name="seen" value={true} onClick={handleUpdateSeen} >.<ViewOffIcon/>.</Button>}
                 </Box> <Spacer />
                
-               <Box p="2" >
-                 <IconButton icon={<DeleteIcon/>} onClick={handleDelete}/>
-                </Box>
+               { filter == "all" && <Box p="2" >
+                 <IconButton icon={<DeleteIcon/>} onClick={handleDelete}/> 
+                </Box>}
             </Flex>
             
         </Box>

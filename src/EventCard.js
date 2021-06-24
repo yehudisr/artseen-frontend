@@ -59,12 +59,12 @@ function EventCard({ event }){
     }
 
     return(
-      <Flex direction="column" w="100%" h="100%" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Flex direction="column" w="350px" h="100%" borderWidth="1px" borderRadius="lg" overflow="hidden" justifyContent="center">
           
             {/* <a href={`/events/${id}`}> */}
             <Image 
             
-            objectFit="cover"
+            height="200px"
             src={image} 
             alt={title}
             onClick={imagePath}

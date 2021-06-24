@@ -5,7 +5,7 @@ import { Container, Wrap, WrapItem, Center } from "@chakra-ui/react"
 function EventList({ events }){
 
     const displayEvents = events.map(event => 
-    <WrapItem boxShadow="dark-lg" borderRadius="lg" borderWidth="1px" h="100%" >
+    <WrapItem >
       <Center  w="350px" ><EventCard key={event.id} event={event} /></Center>
     </WrapItem>
      )
