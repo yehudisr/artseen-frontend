@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText, Input, Form, Button, InputGroup, InputRightElement, Box, Flex, Center, Spacer
+} from "@chakra-ui/react"
 
 function SignupForm({ handleUser }){
 
@@ -46,38 +52,53 @@ const history = useHistory()
       }
 
       return (
+
+         <Center  h="550px" >
+
+         <Flex alignItems="center"> 
         <form onSubmit={handleSubmit}>
           <h1>Create your Account</h1>
-          <label htmlFor="email">Email</label>
-          <input
+           <Box p={4}> <FormControl   isRequired>
+            <FormLabel htmlFor="email">Email</FormLabel>
+          <Input
             type="text"
             name="email"
             value={formData.email}
             onChange={handleChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
+          /> </FormControl></Box><Spacer/>
+          <Box p={4}> <FormControl   isRequired>
+            <FormLabel 
+         htmlFor="password">Password</FormLabel>
+          <Input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-          />
-          <label htmlFor="firstname">Firstname</label>
-          <input
+          /></FormControl></Box><Spacer/>
+          <Box p={4}> <FormControl   isRequired>
+            <FormLabel htmlFor="firstname">Firstname</FormLabel>
+          <Input
             type="text"
             name="firstname"
             value={formData.firstname}
             onChange={handleChange}
           />
-          <label htmlFor="lastname">Lastname</label>
-          <input
+          </FormControl></Box><Spacer/>
+
+          <Box p={4}> <FormControl   isRequired>
+            <FormLabel 
+        htmlFor="lastname">Lastname</FormLabel>
+          <Input
             type="text"
             name="lastname"
             value={formData.lastname}
             onChange={handleChange}
           />
-          <input type="submit" value="signup" />
+          </FormControl></Box><Spacer/>
+           <Button type="submit" value="signup" >Sign Up</Button> 
         </form>
+            </Flex>
+    </Center>
       );
 }
 

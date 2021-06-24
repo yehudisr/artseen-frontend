@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { Button, ButtonGroup, Box, Image, Badge, Flex, Spacer, WrapItem } from "@chakra-ui/react";
 import { AddIcon, WarningIcon, DeleteIcon, CheckCircleIcon, CheckIcon } from '@chakra-ui/icons';
 
-function EventCard({ event }){
+function EventCard({ event, savedArray }){
     const getUser = localStorage.getItem('user')
     const currentUser = JSON.parse(getUser)
     const {id, title, comments, image, date_to_display, description} = event
@@ -24,6 +24,11 @@ function EventCard({ event }){
       } else {
         setDescPreview(descPreview => description)
       }
+      savedArray.forEach(idx => {
+        if(event.id == idx){
+          setSaved(saved => true)
+        }
+      })
     }, [])
 
     
@@ -76,7 +81,7 @@ function EventCard({ event }){
                <Box p="6">
         <Box d="flex" alignItems="baseline">
           <Badge borderRadius="full" px="2" colorScheme="teal">
-           New
+           {saved ? "saved" : "New"}
           </Badge>
           <Box
             color="gray.500"

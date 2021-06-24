@@ -14,7 +14,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate,
     const {id, title, description, image, date, link="https://www.artic.edu/"} = event
 
     const displayDate = new Date(`${date}`).toLocaleString('en-US', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
-    console.log(event)
+ 
 
     useEffect(() => {
         
@@ -95,7 +95,7 @@ function ProfileEventCard({ event, eventListing, onHandleRemove, onHandleUpdate,
                <Box p="6">
                 <Box d="flex" alignItems="baseline">
                     <Badge borderRadius="full" px="2" colorScheme="teal">
-                     New
+                     Saved
                     </Badge>
                  <Box
                 color="gray.500"
