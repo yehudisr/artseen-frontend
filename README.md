@@ -1,4 +1,5 @@
 # Artseen
+![Artseen](/Users/yehudisraitman/Flatiron/phase4/artseen/artseen-frontend/src/logo2.png)
 
 ## Front End
 
