@@ -4,11 +4,11 @@
 
 Table of Contents
 
-Description
-Features
-Tech stack
-Install
-Contributors
+- Description
+- Features
+- Tech stack
+- Install
+- Contributors
 
 ### Description
 
@@ -41,7 +41,7 @@ Frontend
 - Run npm i
 - Run npm started
 
-Backend Installation [Artseen Backend](https://github.com/yehudisr/artseen-be)
+Backend [Artseen Backend](https://github.com/yehudisr/artseen-be)
 - Clone this repo to your local machine git clone <this-repo-url>
 - Run rails db:create to create a local database
 - Run rails db:migrate to create tables
