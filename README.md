@@ -37,16 +37,16 @@ Artseen is a React application, that allows users to browse upcoming art events.
 ### Install
 
 Frontend
-- Clone this repo to your local machine git clone <this-repo-url>
-- Run npm i
-- Run npm started
+- Clone this repo to your local machine `git clone <this-repo-url>`
+- Run `npm i`
+- Run `npm start`
 
 Backend [Artseen Backend](https://github.com/yehudisr/artseen-be)
-- Clone this repo to your local machine git clone <this-repo-url>
-- Run rails db:create to create a local database
-- Run rails db:migrate to create tables
-- Run rails db:seed to create seed data
-- Run rails s to start to the server (make sure the backend is running on http://localhost:3000)
+- Clone this repo to your local machine `git clone <this-repo-url>`
+- Run `rails db:create` to create a local database
+- Run `rails db:migrate` to create tables
+- Run `rails db:seed` to create seed data
+- Run `rails s` to start to the server (make sure the backend is running on `http://localhost:3000`)
 
 ## Contributors
 
